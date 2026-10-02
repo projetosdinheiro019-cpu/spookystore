@@ -120,39 +120,6 @@ header.scrolled{background:rgba(7,7,7,.94);border-color:var(--line);box-shadow:0
 .faq{max-width:850px;margin:auto}.faq-item{border-top:1px solid var(--line)}.faq-item:last-child{border-bottom:1px solid var(--line)}.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;padding:20px 0;background:none;border:0;color:white;text-align:left;font-weight:750}.faq-q span{color:var(--orange);font-size:20px}.faq-a{max-height:0;overflow:hidden;color:#777;font-size:12px;line-height:1.7;transition:max-height .35s}.faq-item.open .faq-a{max-height:130px;padding-bottom:20px}
 footer{border-top:1px solid var(--line);padding:60px 0 28px;background:#050505}.footer-grid{display:grid;grid-template-columns:1.4fr .7fr .7fr .9fr;gap:40px}.footer-brand p{color:#777;max-width:320px;font-size:12px;line-height:1.7}.footer h4{font-size:11px;text-transform:uppercase;letter-spacing:.15em;color:#aaa}.footer a{display:block;color:#777;font-size:12px;margin:11px 0}.footer a:hover{color:white}.footer-bottom{border-top:1px solid var(--line);margin-top:45px;padding-top:20px;color:#555;font-size:10px;display:flex;justify-content:space-between;gap:20px}
 
-/* ===== BRAND + ORDERS ===== */
-.brand-logo{display:block;width:148px;height:52px;object-fit:contain;object-position:left center;filter:drop-shadow(0 0 14px rgba(255,106,0,.08))}
-.footer-brand .brand-logo{width:205px;height:72px;margin-left:-6px}
-.orders-section{padding-top:10px}
-.orders-panel{border:1px solid var(--line);border-radius:24px;background:linear-gradient(180deg,#101010,#090909);overflow:hidden}
-.orders-empty{padding:55px 24px;text-align:center}
-.orders-empty .orders-symbol{width:54px;height:54px;margin:0 auto 18px;border:1px solid rgba(255,106,0,.25);border-radius:16px;display:grid;place-items:center;color:var(--orange);font-size:24px}
-.orders-empty h3{font-family:Georgia,serif;font-size:26px;margin:0 0 8px}
-.orders-empty p{max-width:480px;margin:0 auto 20px;color:#777;font-size:12px;line-height:1.7}
-.orders-list{display:grid;gap:1px;background:var(--line)}
-.order-card{background:#0d0d0d;padding:20px 22px;display:grid;grid-template-columns:1.1fr 1fr auto;gap:22px;align-items:center}
-.order-id{font-size:12px;font-weight:850;color:#eee}.order-date{display:block;color:#666;font-size:10px;margin-top:5px}
-.order-items{color:#aaa;font-size:11px;line-height:1.65}.order-items strong{color:#ddd}
-.order-status{justify-self:end;text-align:right}.order-status-badge{display:inline-flex;align-items:center;gap:7px;padding:7px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.09);font-size:9px;font-weight:850;text-transform:uppercase;letter-spacing:.08em}
-.order-status-badge:before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;box-shadow:0 0 10px currentColor}
-.order-status-badge.pending{color:#ffb15e}.order-status-badge.paid{color:#9fe870}.order-status-badge.failed{color:#ff7777}
-.order-total{display:block;margin-top:7px;font-size:13px;color:#fff}.orders-meta{padding:14px 20px;color:#68635d;font-size:10px;border-bottom:1px solid var(--line);background:#0b0b0b}
-@media(max-width:800px){.order-card{grid-template-columns:1fr;gap:10px}.order-status{justify-self:start;text-align:left}.brand-logo{width:125px;height:46px}.footer-brand .brand-logo{width:180px;height:64px}}
-
-
-/* ===== ORDER ACCOUNT / TRACKING ===== */
-.orders-tools{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;padding:18px;border-bottom:1px solid var(--line);background:#0b0b0b}
-.orders-tools input{height:44px;background:#111;border:1px solid var(--line);border-radius:11px;color:#fff;padding:0 13px;outline:none;font-size:12px;transition:.2s}
-.orders-tools input:focus{border-color:rgba(255,106,0,.6);box-shadow:0 0 0 3px rgba(255,106,0,.08)}
-.orders-tools button{height:44px;white-space:nowrap}
-.orders-hint{padding:0 18px 16px;color:#666;font-size:10px;background:#0b0b0b;line-height:1.6}
-.order-card{transition:background .2s,transform .2s}.order-card:hover{background:#111}
-.order-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.order-mini-btn{height:30px;padding:0 10px;border:1px solid var(--line);background:#151515;color:#aaa;border-radius:8px;font-size:10px}.order-mini-btn:hover{color:#fff;border-color:rgba(255,106,0,.4)}
-.order-details{grid-column:1/-1;display:none;border-top:1px solid var(--line);padding-top:16px;margin-top:4px}.order-card.expanded .order-details{display:block}.order-details-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.order-detail-box{border:1px solid var(--line);border-radius:12px;background:#0a0a0a;padding:13px}.order-detail-box small{display:block;color:#666;text-transform:uppercase;letter-spacing:.08em;font-size:8px;margin-bottom:6px}.order-detail-box strong{font-size:11px;color:#ddd;line-height:1.5}.order-progress{display:flex;gap:5px;margin-top:13px}.order-progress span{height:4px;flex:1;border-radius:99px;background:#202020}.order-progress span.on{background:var(--orange);box-shadow:0 0 12px rgba(255,106,0,.2)}
-.remote-order{margin:0 18px 18px;border:1px solid rgba(255,106,0,.18);border-radius:15px;background:linear-gradient(135deg,rgba(255,106,0,.06),#0b0b0b);padding:15px}
-.remote-order-title{display:flex;justify-content:space-between;gap:15px;align-items:center}.remote-order-title strong{font-size:12px}.remote-order-title span{font-size:9px;color:#888}.remote-order-items{color:#aaa;font-size:10px;line-height:1.7;margin-top:10px}
-@media(max-width:800px){.orders-tools{grid-template-columns:1fr}.orders-tools button{width:100%}.order-details-grid{grid-template-columns:1fr}}
-
 /* overlays */
 .drawer-backdrop,.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);z-index:300;display:none}.drawer-backdrop.open,.modal-backdrop.open{display:block}
 .cart{position:absolute;right:0;top:0;height:100%;width:min(455px,100%);background:#0c0c0c;border-left:1px solid var(--line);padding:22px;overflow:auto;animation:slideIn .3s var(--ease)}
@@ -230,55 +197,6 @@ footer{border-top:1px solid var(--line);padding:60px 0 28px;background:#050505}.
 
 
 .payment-backdrop{position:fixed;inset:0;z-index:12000;background:rgba(0,0,0,.76);backdrop-filter:blur(18px);display:none;align-items:center;justify-content:center;padding:20px}.payment-backdrop.open{display:flex}.payment-modal{position:relative;width:min(480px,100%);max-height:min(760px,92vh);overflow:auto;background:linear-gradient(180deg,#151515,#0b0b0b);border:1px solid rgba(255,255,255,.1);border-radius:26px;padding:28px;box-shadow:0 40px 120px rgba(0,0,0,.7),0 0 70px rgba(255,106,0,.08);animation:paymentIn .35s var(--ease)}.payment-close{position:absolute;right:17px;top:15px;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:#111;color:#aaa;font-size:24px}.payment-kicker{font-size:9px;letter-spacing:.2em;color:var(--orange2);font-weight:800;margin-bottom:7px}.payment-modal h2{margin:0;font-family:Georgia,serif;font-size:29px}.payment-sub{font-size:12px;color:#89837c;line-height:1.6;margin:8px 0 20px}.payment-order{border:1px solid var(--line);border-radius:15px;padding:13px;max-height:145px;overflow:auto}.payment-order-row{display:flex;justify-content:space-between;gap:12px;font-size:11px;padding:6px 0;color:#bdb7b0}.payment-total{display:flex;justify-content:space-between;align-items:center;padding:17px 0;font-size:13px;border-bottom:1px solid var(--line);margin-bottom:16px}.payment-total strong{font-size:22px;color:#fff}.payment-action{width:100%}.payment-safe{text-align:center;font-size:9px;color:#67625d;margin-top:11px}.payment-pix{text-align:center}.payment-status{display:flex;justify-content:center;align-items:center;gap:8px;font-size:11px;color:#c9c2bb;margin-bottom:15px}.status-dot{width:7px;height:7px;border-radius:50%;background:var(--orange);box-shadow:0 0 12px rgba(255,106,0,.8);animation:statusPulse 1.3s infinite}.qr-wrap{width:250px;height:250px;margin:0 auto 15px;background:white;border-radius:18px;padding:12px;display:grid;place-items:center}.qr-wrap img{width:100%;height:100%;object-fit:contain}.payment-pix>strong{display:block;font-size:20px;margin-bottom:13px}.copy-pix{width:100%;height:44px;border-radius:11px;background:var(--orange);border:0;color:#090909;font-weight:850}.payment-pix textarea{width:100%;height:64px;margin-top:9px;border:1px solid var(--line);background:#111;color:#aaa;border-radius:10px;padding:9px;font-size:9px;resize:none}.payment-expire{font-size:9px;color:#67625d;margin:10px 0 0}.payment-success{text-align:center;padding:25px 5px}.success-mark{width:58px;height:58px;margin:0 auto 16px;border-radius:50%;border:1px solid rgba(159,232,112,.4);display:grid;place-items:center;color:#9fe870;font-size:30px;font-weight:800}.payment-success h3{font-family:Georgia,serif;font-size:25px;margin:0}.payment-success p{font-size:12px;color:#888;margin:8px 0 20px}.payment-error{margin-top:15px;padding:12px;border-radius:11px;border:1px solid rgba(255,87,87,.3);background:rgba(255,87,87,.06);color:#ff8a8a;font-size:11px}.payment-modal[aria-busy="true"]{cursor:progress}@keyframes paymentIn{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:none}}@keyframes statusPulse{50%{opacity:.35;transform:scale(.7)}}@media(max-width:520px){.payment-modal{padding:23px;border-radius:21px}.qr-wrap{width:220px;height:220px}}
-
-/* CHECKOUT PREMIUM LAYOUT */
-.payment-backdrop{padding:24px;overflow:auto}
-.payment-modal.wide{width:min(1040px,100%);max-height:min(900px,94vh);padding:34px;overflow:auto}
-.payment-modal.wide h2{font-size:36px;letter-spacing:-.04em}
-.payment-modal.wide .payment-sub{max-width:650px;margin-bottom:26px}
-.checkout-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(300px,.75fr);gap:18px;align-items:start}
-.checkout-card{background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.018));border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:22px;min-width:0}
-.checkout-card h3{margin:0 0 18px;font-size:17px;letter-spacing:-.02em}
-.checkout-section-label{font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:850;color:var(--orange2);margin:20px 0 10px;padding-top:16px;border-top:1px solid rgba(255,255,255,.07)}
-.checkout-section-label:first-of-type{margin-top:0;padding-top:0;border-top:0}
-.checkout-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
-.checkout-field{min-width:0;display:flex;flex-direction:column;gap:7px}
-.checkout-field.full{grid-column:1/-1}
-.checkout-field label{font-size:10px;color:#aaa49d;font-weight:700;line-height:1.2}
-.checkout-field input{height:45px;width:100%;box-sizing:border-box;background:#0c0c0c;border:1px solid rgba(255,255,255,.1);border-radius:11px;color:#f4efe8;padding:0 13px;font-size:13px;min-width:0}
-.checkout-field input::placeholder{color:#5f5b57}
-.checkout-field input:focus{border-color:rgba(255,106,0,.62);box-shadow:0 0 0 3px rgba(255,106,0,.08)}
-.checkout-help{font-size:10px;line-height:1.55;color:#68635e;margin-top:11px}
-.checkout-check{display:flex;align-items:flex-start;gap:9px;margin-top:15px;color:#9b958e;font-size:10px;line-height:1.5;cursor:pointer}
-.checkout-check input{width:15px;height:15px;min-width:15px;margin:1px 0 0;accent-color:var(--orange);padding:0}
-.checkout-summary{position:sticky;top:0}
-.checkout-summary-list{max-height:235px;overflow:auto;border:1px solid rgba(255,255,255,.07);border-radius:13px;padding:7px 12px;margin-bottom:15px}
-.checkout-summary-list:empty{display:none}
-.checkout-total-line{display:flex;justify-content:space-between;gap:18px;padding:8px 0;color:#99938d;font-size:12px}
-.checkout-total-line span:last-child{color:#d7d1ca;text-align:right}
-.checkout-total-line.final{border-top:1px solid rgba(255,255,255,.09);margin-top:8px;padding-top:16px;color:#f4efe8;font-size:14px}
-.checkout-total-line.final strong{font-size:24px;color:white;letter-spacing:-.03em}
-.payment-action{height:50px;margin-top:13px;font-size:13px}
-.checkout-loading{display:none;text-align:center;color:#888;font-size:10px;margin-top:10px}
-.checkout-secure{display:flex;gap:8px;align-items:flex-start;color:#66615c;font-size:9px;line-height:1.5;margin-top:13px}
-.checkout-secure span:first-child{color:var(--green);font-size:10px}
-@media(max-width:820px){
- .payment-modal.wide{width:min(680px,100%);padding:24px;max-height:94vh}
- .checkout-grid{grid-template-columns:1fr}
- .checkout-summary{position:static}
- .checkout-summary-list{max-height:180px}
-}
-@media(max-width:560px){
- .payment-backdrop{padding:10px}
- .payment-modal.wide{padding:20px 15px;border-radius:20px;max-height:96vh}
- .payment-modal.wide h2{font-size:29px;padding-right:35px}
- .checkout-card{padding:16px;border-radius:16px}
- .checkout-fields{grid-template-columns:1fr;gap:11px}
- .checkout-field.full{grid-column:auto}
- .checkout-field input{height:46px}
- .payment-close{right:12px;top:12px}
-}
-
 </style>
 </head>
 <body>
@@ -296,9 +214,9 @@ footer{border-top:1px solid var(--line);padding:60px 0 28px;background:#050505}.
 
 <header id="header">
   <div class="container nav">
-    <a class="brand" href="#" aria-label="Spooky Store"><img class="brand-logo" src="assets/spooky-logo.png" alt="Spooky Store"></a>
+    <a class="brand" href="#"><span class="brandmark">S</span><span>SPOOKY <em>STORE</em></span></a>
     <nav class="navlinks">
-      <a href="#colecao">Coleção</a><a href="#categorias">Categorias</a><a href="#pedidos">Pedidos</a><a href="#sobre">Por que Spooky</a><a href="#faq">Dúvidas</a>
+      <a href="#colecao">Coleção</a><a href="#categorias">Categorias</a><a href="#sobre">Por que Spooky</a><a href="#faq">Dúvidas</a>
     </nav>
     <div class="nav-actions">
       <button class="icon" aria-label="Buscar" onclick="focusSearch()">⌕</button>
@@ -375,11 +293,6 @@ footer{border-top:1px solid var(--line);padding:60px 0 28px;background:#050505}.
   </div>
 </section>
 
-<section class="container section orders-section" id="pedidos">
-  <div class="section-head"><div><div class="eyebrow">Acompanhe sua compra</div><h2 class="section-title">Meus pedidos.</h2></div><p class="section-desc">Veja compras deste dispositivo ou consulte um pedido em qualquer aparelho usando o número do pedido e o e-mail da compra.</p></div>
-  <div class="orders-panel" id="ordersPanel"></div>
-</section>
-
 <section class="container section" id="faq">
   <div class="section-head"><div><div class="eyebrow">Ajuda</div><h2 class="section-title">Perguntas frequentes.</h2></div></div>
   <div class="faq">
@@ -393,8 +306,8 @@ footer{border-top:1px solid var(--line);padding:60px 0 28px;background:#050505}.
 
 <footer>
 <div class="container footer-grid">
-  <div class="footer-brand"><div class="brand"><img class="brand-logo" src="assets/spooky-logo.png" alt="Spooky Store"></div><p>Seu Halloween começa aqui. Uma experiência de compra criada para quem quer sair do comum.</p></div>
-  <div><h4>Loja</h4><a href="#colecao">Produtos</a><a href="#categorias">Categorias</a><a href="#pedidos">Meus pedidos</a><a href="#colecao" onclick="setFilter('fantasia')">Fantasias</a><a href="#colecao" onclick="setFilter('decoracao')">Decoração</a></div>
+  <div class="footer-brand"><div class="brand"><span class="brandmark">S</span><span>SPOOKY <em>STORE</em></span></div><p>Seu Halloween começa aqui. Uma experiência de compra criada para quem quer sair do comum.</p></div>
+  <div><h4>Loja</h4><a href="#colecao">Produtos</a><a href="#categorias">Categorias</a><a href="#colecao" onclick="setFilter('fantasia')">Fantasias</a><a href="#colecao" onclick="setFilter('decoracao')">Decoração</a></div>
   <div><h4>Ajuda</h4><a href="#faq">Perguntas frequentes</a><a href="#">Política de troca</a><a href="#">Privacidade</a><a href="#">Termos</a></div>
   <div><h4>Contato</h4><a href="mailto:contato@spookystore.com.br">contato@spookystore.com.br</a><a href="#">Instagram</a><a href="#">WhatsApp</a></div>
 </div>
@@ -554,7 +467,7 @@ function calcShipping(){
  const cep=document.getElementById('cep').value.replace(/\D/g,'');
  if(cep.length!==8){document.getElementById('shipMsg').textContent='Digite um CEP válido com 8 números.';return}
  const sub=cart.reduce((s,id)=>s+products.find(p=>p.id===id).price,0);
- const disc=coupon?sub*.1:0; shipping=Math.max(0,sub-disc)>=199?0:19.90;document.getElementById('shipMsg').textContent=shipping===0?'Frete grátis para este pedido.':'Frete estimado: R$ 19,90';
+ shipping=sub>=199?0:19.90;document.getElementById('shipMsg').textContent=shipping===0?'Frete grátis para este pedido.':'Frete estimado: R$ 19,90';
  updateCart();
 }
 function quick(id){
@@ -568,59 +481,6 @@ function quick(id){
  document.getElementById('modalBackdrop').classList.add('open');document.getElementById('modalWrap').classList.add('open');document.body.classList.add('lock');
 }
 function closeModal(){document.getElementById('modalBackdrop').classList.remove('open');document.getElementById('modalWrap').classList.remove('open');document.body.classList.remove('lock')}
-function getLocalOrders(){try{return JSON.parse(localStorage.getItem('spooky_orders')||'[]')}catch{return []}}
-function setLocalOrders(list){localStorage.setItem('spooky_orders',JSON.stringify(list.slice(0,20)))}
-function saveLocalOrder(order){const list=getLocalOrders().filter(x=>x.orderId!==order.orderId);list.unshift(order);setLocalOrders(list);renderOrders()}
-function updateLocalOrder(orderId,patch){const list=getLocalOrders().map(x=>x.orderId===orderId?{...x,...patch}:x);setLocalOrders(list);renderOrders()}
-function orderStatusLabel(status){return status==='paid'?'Pagamento aprovado':status==='failed'?'Pagamento não concluído':'Aguardando pagamento'}
-function orderProgress(status){
- const s=String(status||'pending').toLowerCase();
- return `<div class="order-progress"><span class="on"></span><span class="${['paid','shipped','delivered'].includes(s)?'on':''}"></span><span class="${['shipped','delivered'].includes(s)?'on':''}"></span></div>`;
-}
-function safeText(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));}
-function renderOrderCard(o,remote=false){
- const status=o.status||o.paymentStatus||'pending';
- const items=o.items||[];
- const total=Number(o.totalCents||o.total_cents||0)/100;
- const orderId=o.orderId||o.order_number||o.orderNumber||'—';
- const email=o.email||o.customer_email||'';
- const created=o.createdAt||o.created_at;
- const names=items.map(i=>`${Number(i.quantity)||1}× ${safeText(i.name||i.product_name||'Produto')}`).join(' · ');
- const address=[o.shipping_street,o.shipping_number,o.shipping_neighborhood,o.shipping_city,o.shipping_state].filter(Boolean).join(', ');
- return `<article class="order-card" data-order="${safeText(orderId)}">
-   <div><div class="order-id">Pedido ${safeText(orderId)}</div><span class="order-date">${created?new Date(created).toLocaleString('pt-BR'):''}</span></div>
-   <div class="order-items">${names||'Itens do pedido'}<br><strong>${safeText(email)}</strong></div>
-   <div class="order-status"><span class="order-status-badge ${status==='paid'?'paid':status==='failed'?'failed':'pending'}">${orderStatusLabel(status)}</span><strong class="order-total">${brl(total)}</strong></div>
-   <div class="order-actions"><button class="order-mini-btn" onclick="toggleOrderDetails(this)">Ver detalhes</button>${remote?'':'<button class="order-mini-btn" onclick="repeatOrder(\''+safeText(orderId)+'\')">Continuar pagamento</button>'}</div>
-   <div class="order-details"><div class="order-details-grid">
-     <div class="order-detail-box"><small>Itens</small><strong>${names||'—'}</strong></div>
-     <div class="order-detail-box"><small>Pagamento</small><strong>${orderStatusLabel(status)}${o.paymentTransactionId||o.panterapay_transaction_id?'<br>ID: '+safeText(o.paymentTransactionId||o.panterapay_transaction_id):''}</strong></div>
-     <div class="order-detail-box"><small>Entrega</small><strong>${safeText(address||'Endereço informado no checkout')}</strong></div>
-     <div class="order-detail-box"><small>Total</small><strong>${brl(total)}</strong></div>
-   </div>${orderProgress(status)}</div>
- </article>`;
-}
-function toggleOrderDetails(btn){btn.closest('.order-card')?.classList.toggle('expanded');btn.textContent=btn.closest('.order-card')?.classList.contains('expanded')?'Ocultar detalhes':'Ver detalhes'}
-function renderOrders(){
- const el=document.getElementById('ordersPanel'); if(!el)return; const orders=getLocalOrders();
- el.innerHTML=`<div class="orders-tools"><input id="orderLookupEmail" type="email" placeholder="E-mail usado na compra" autocomplete="email"><input id="orderLookupNumber" placeholder="Número do pedido (ex.: SPK-AB12CD34)" autocomplete="off"><button class="btn primary" onclick="lookupRemoteOrder()">Consultar pedido</button></div><div class="orders-hint">Para consultar um pedido em outro celular ou computador, informe o e-mail usado no checkout e o número do pedido. Esses dados são usados juntos para localizar somente a compra correspondente.</div><div id="remoteOrderResult"></div>${orders.length?'<div class="orders-meta">Pedidos recentes salvos neste dispositivo.</div><div class="orders-list">'+orders.map(o=>renderOrderCard(o)).join('')+'</div>':'<div class="orders-empty"><div class="orders-symbol">#</div><h3>Nenhum pedido neste dispositivo.</h3><p>Já comprou em outro aparelho? Use o formulário acima para consultar seu pedido.</p><a class="btn primary" href="#colecao">Explorar produtos</a></div>'}`;
- const email=orders[0]?.email||'';if(email)document.getElementById('orderLookupEmail').value=email;
-}
-async function lookupRemoteOrder(){
- const email=(document.getElementById('orderLookupEmail')?.value||'').trim().toLowerCase();
- const order=(document.getElementById('orderLookupNumber')?.value||'').trim().toUpperCase();
- const target=document.getElementById('remoteOrderResult');if(!target)return;
- if(!/^\S+@\S+\.\S+$/.test(email)||!/^SPK-[A-Z0-9]{8}$/.test(order)){target.innerHTML='<div class="orders-meta" style="color:#ff9b63">Informe um e-mail válido e um número no formato SPK-XXXXXXXX.</div>';return}
- target.innerHTML='<div class="orders-meta">Consultando seu pedido…</div>';
- try{const r=await fetch(`/api/order?email=${encodeURIComponent(email)}&order=${encodeURIComponent(order)}`);const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(d.error||'Pedido não encontrado.');target.innerHTML=`<div class="remote-order"><div class="remote-order-title"><strong>Pedido ${safeText(d.order?.order_number||order)}</strong><span>Encontrado no sistema</span></div>${renderOrderCard({...d.order,items:d.items},true)}</div>`;}
- catch(e){target.innerHTML=`<div class="orders-meta" style="color:#ff7777">${safeText(e.message||'Não foi possível consultar o pedido.')}</div>`}
-}
-function repeatOrder(orderId){
- const o=getLocalOrders().find(x=>x.orderId===orderId);if(!o){toast('Esse pedido não está disponível neste dispositivo');return}
- const pending=String(o.status||'pending')==='pending';if(!pending){toast('Este pedido já foi finalizado');return}
- localStorage.setItem('spooky_pending_order',JSON.stringify({orderId:o.orderId,transactionId:o.transactionId}));openPayment();toast('Abra o checkout para continuar o pagamento');
-}
-
 function checkout(){
  if(!cart.length){toast('Adicione pelo menos um produto');return}
  openPayment();
@@ -628,9 +488,8 @@ function checkout(){
 function currentOrderTotal(){
  const sub=cart.reduce((s,id)=>s+products.find(p=>p.id===id).price,0);
  const disc=coupon?sub*.1:0;
- const taxable=Math.max(0,sub-disc);
- const ship=(shipping!==null&&shipping!==undefined&&shipping!==0)?shipping:(taxable>=199?0:(cart.length?19.90:0));
- return Math.max(0,taxable+ship);
+ const ship=(shipping!==null&&shipping!==undefined)?(shipping||0):(sub>=199?0:19.90);
+ return Math.max(0,sub-disc+ship);
 }
 function checkoutData(){
  return {
@@ -687,12 +546,13 @@ async function lookupCep(){
  }catch{toast('Não foi possível consultar o CEP agora')}
 }
 function updateCheckoutTotals(){
- const sub=cart.reduce((s,id)=>s+products.find(p=>p.id===id).price,0),disc=coupon?sub*.1:0,taxable=Math.max(0,sub-disc),ship=(shipping!==null&&shipping!==undefined&&shipping!==0)?shipping:(taxable>=199?0:19.90);
+ const sub=cart.reduce((s,id)=>s+products.find(p=>p.id===id).price,0),disc=coupon?sub*.1:0,ship=(shipping!==null&&shipping!==undefined)?(shipping||0):(sub>=199?0:19.90);
  document.getElementById('checkoutSubtotal').textContent=brl(sub);document.getElementById('checkoutDiscount').textContent=disc?'− '+brl(disc):'R$ 0,00';document.getElementById('checkoutShipping').textContent=ship===0?'Grátis':brl(ship);document.getElementById('checkoutGrandTotal').textContent=brl(Math.max(0,sub-disc+ship));
 }
 function openPayment(){
  const map={};cart.forEach(id=>map[id]=(map[id]||0)+1);
  document.getElementById('paymentOrder').innerHTML=Object.entries(map).map(([id,qty])=>{const p=products.find(x=>x.id==id);return `<div class="payment-order-row"><span>${qty}× ${p.name}</span><strong>${brl(p.price*qty)}</strong></div>`}).join('');
+ document.getElementById('paymentTotal').textContent=brl(currentOrderTotal());
  document.getElementById('paymentStart').hidden=false;document.getElementById('paymentPix').hidden=true;document.getElementById('paymentSuccess').hidden=true;document.getElementById('paymentError').hidden=true;
  document.getElementById('paymentForm').hidden=false;
  document.getElementById('checkoutTerms').checked=false;
@@ -703,32 +563,26 @@ function openPayment(){
 function closePayment(){clearInterval(window.__paymentPoll);const back=document.getElementById('paymentBackdrop');back.classList.remove('open');back.setAttribute('aria-hidden','true');document.body.classList.remove('lock');}
 async function createPixPayment(){
  const customer=validateCheckout();if(!customer)return;
- const btn=document.querySelector('.payment-action');btn.disabled=true;btn.textContent='Preparando pedido…';document.getElementById('checkoutLoading').classList.add('show');
- const qtyMap={};cart.forEach(id=>qtyMap[id]=(qtyMap[id]||0)+1);const items=Object.entries(qtyMap).map(([id,quantity])=>({productId:Number(id),quantity}));
+ const amount=Math.round(currentOrderTotal()*100);const btn=document.querySelector('.payment-action');btn.disabled=true;btn.textContent='Gerando PIX…';document.getElementById('checkoutLoading').classList.add('show');
+ const orderId='SPK-'+Date.now().toString(36).toUpperCase();
+ const order={orderId,customer,items:cart.map(id=>{const p=products.find(x=>x.id===id);return {id:p.id,name:p.name,price:p.price}}),amount,createdAt:new Date().toISOString()};
+ localStorage.setItem('spooky_pending_order',JSON.stringify(order));
  try{
-  const orderRes=await fetch('/api/create-order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({customer,items,coupon:coupon?'SPOOKY10':null,terms:document.getElementById('checkoutTerms').checked})});
-  const orderData=await orderRes.json().catch(()=>({}));
-  if(!orderRes.ok)throw new Error(orderData.error||'Não foi possível criar o pedido.');
-  const orderId=orderData.orderId;
-  const payRes=await fetch('/api/create-payment',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({orderId})});
-  const data=await payRes.json().catch(()=>({}));
-  if(!payRes.ok)throw new Error(data.error||'Não foi possível criar o pagamento.');
-  localStorage.setItem('spooky_pending_order',JSON.stringify({orderId,transactionId:data.id}));
-  const orderItems=Object.entries(qtyMap).map(([id,quantity])=>{const p=products.find(x=>x.id==id);return {productId:Number(id),quantity,name:p?.name||'Produto',price:p?.price||0}});
-  saveLocalOrder({orderId,transactionId:data.id,status:'pending',createdAt:new Date().toISOString(),totalCents:Number(orderData.totalCents)||Math.round(currentOrderTotal()*100),email:customer.email,name:customer.name,items:orderItems});
+  const r=await fetch('/api/create-payment',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({amount,orderId,customer})});
+  const data=await r.json();if(!r.ok)throw new Error(data.error||'Não foi possível criar o pagamento.');
   document.getElementById('paymentForm').hidden=true;document.getElementById('paymentStart').hidden=true;document.getElementById('paymentPix').hidden=false;
   document.getElementById('paymentQr').src=data.qrCodeBase64||'';document.getElementById('pixCode').value=data.copyPaste||'';
-  document.getElementById('paymentPixAmount').textContent=brl((Number(data.amount)||Number(orderData.totalCents)||0)/100);document.getElementById('paymentStatusText').textContent='Aguardando pagamento';
+  document.getElementById('paymentPixAmount').textContent=brl((Number(data.amount)||amount)/100);document.getElementById('paymentStatusText').textContent='Aguardando pagamento';
   document.getElementById('paymentExpire').textContent=data.expiresAt?`Válido até ${new Date(data.expiresAt).toLocaleString('pt-BR')}`:'';
   clearInterval(window.__paymentPoll);window.__paymentPoll=setInterval(()=>pollPayment(data.id),5000);await pollPayment(data.id);
- }catch(e){document.getElementById('paymentError').hidden=false;document.getElementById('paymentError').textContent=e.message||'Erro ao iniciar o pedido.'}
+ }catch(e){document.getElementById('paymentError').hidden=false;document.getElementById('paymentError').textContent=e.message||'Erro ao iniciar o pagamento.'}
  finally{btn.disabled=false;btn.textContent='Gerar pagamento PIX';document.getElementById('checkoutLoading').classList.remove('show')}
 }
 async function pollPayment(id){
  try{
   const r=await fetch('/api/payment-status?id='+encodeURIComponent(id));if(!r.ok)return;const data=await r.json();const status=String(data.status||'').toLowerCase();
-  if(['approved','paid','completed','success'].includes(status)){clearInterval(window.__paymentPoll);const oid=data.orderId||JSON.parse(localStorage.getItem('spooky_pending_order')||'{}').orderId;updateLocalOrder(oid,{status:'paid'});document.getElementById('paymentPix').hidden=true;document.getElementById('paymentSuccess').hidden=false;document.getElementById('paymentSuccessOrder').textContent=oid?'Pedido '+oid:'';cart=[];coupon=0;shipping=0;localStorage.removeItem('spooky_pending_order');save();updateCart()}
-  else if(['failed','expired','cancelled','canceled'].includes(status)){clearInterval(window.__paymentPoll);const oid=JSON.parse(localStorage.getItem('spooky_pending_order')||'{}').orderId;updateLocalOrder(oid,{status:'failed'});document.getElementById('paymentStatusText').textContent='Pagamento não concluído';document.getElementById('paymentError').hidden=false;document.getElementById('paymentError').textContent='Esta cobrança não está mais disponível. Feche e gere um novo PIX.'}
+  if(['approved','paid','completed','success'].includes(status)){clearInterval(window.__paymentPoll);document.getElementById('paymentPix').hidden=true;document.getElementById('paymentSuccess').hidden=false;cart=[];save();updateCart()}
+  else if(['failed','expired','cancelled','canceled'].includes(status)){clearInterval(window.__paymentPoll);document.getElementById('paymentStatusText').textContent='Pagamento não concluído';document.getElementById('paymentError').hidden=false;document.getElementById('paymentError').textContent='Esta cobrança não está mais disponível. Feche e gere um novo PIX.'}
  }catch(e){}
 }
 async function copyPixCode(){const code=document.getElementById('pixCode').value;if(!code)return;try{await navigator.clipboard.writeText(code);toast('Código PIX copiado')}catch{document.getElementById('pixCode').select();document.execCommand('copy');toast('Código PIX copiado')}}
@@ -739,8 +593,6 @@ document.addEventListener('DOMContentLoaded',()=>{
  document.getElementById('checkoutCep')?.addEventListener('blur',lookupCep);
  document.getElementById('checkoutState')?.addEventListener('input',e=>e.target.value=e.target.value.toUpperCase().replace(/[^A-Z]/g,'').slice(0,2));
 });
-
-document.addEventListener('DOMContentLoaded',()=>{ renderOrders(); });
 
 function toggleMobile(){
  const links=document.querySelector('.navlinks');links.classList.toggle('mobile-open');
@@ -760,7 +612,7 @@ const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isInte
 document.querySelectorAll('.reveal').forEach(e=>observer.observe(e));
 document.getElementById('search').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('colecao').scrollIntoView({behavior:'smooth'})});
 if(!localStorage.getItem('spooky_cookie'))setTimeout(()=>document.getElementById('cookie').classList.add('show'),1800);
-updateBadges();render();updateCart();renderOrders();
+updateBadges();render();updateCart();
 
 
 /* ===== SPOOKY MICRO-INTERACTIONS ===== */
@@ -900,7 +752,7 @@ updateBadges();render();updateCart();renderOrders();
     <div id="paymentSuccess" class="payment-success" hidden>
       <div class="success-mark">✓</div>
       <h3>Pagamento confirmado</h3>
-      <p>Seu pedido foi recebido pela Spooky Store.</p><strong id="paymentSuccessOrder" style="display:block;color:#bdb7b0;font-size:11px;margin:-8px 0 18px"></strong>
+      <p>Seu pedido foi recebido pela Spooky Store.</p>
       <button class="btn primary" onclick="closePayment()">Voltar para a loja</button>
     </div>
     <div id="paymentError" class="payment-error" hidden></div>
