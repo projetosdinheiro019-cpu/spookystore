@@ -297,7 +297,7 @@ footer{border-top:1px solid var(--line);padding:60px 0 28px;background:#050505}.
   <div class="section-head"><div><div class="eyebrow">Ajuda</div><h2 class="section-title">Perguntas frequentes.</h2></div></div>
   <div class="faq">
     <div class="faq-item"><button class="faq-q">Quais formas de pagamento posso oferecer?<span>+</span></button><div class="faq-a">O site está preparado para receber a integração com Pix, cartão e outros meios através do gateway que você escolher.</div></div>
-    <div class="faq-item"><button class="faq-q">O checkout já está conectado?<span>+</span></button><div class="faq-a">Ainda não. O checkout atual é demonstrativo para você poder testar a experiência. A conexão real exige as credenciais do seu gateway.</div></div>
+    <div class="faq-item"><button class="faq-q">O checkout já está conectado?<span>+</span></button><div class="faq-a">Sim. O checkout usa PIX pela PanteraPay, com geração de QR Code e acompanhamento do pagamento.</div></div>
     <div class="faq-item"><button class="faq-q">Posso trocar os produtos e preços?<span>+</span></button><div class="faq-a">Sim. O catálogo está centralizado no JavaScript e pode ser conectado depois a um banco de dados ou painel administrativo.</div></div>
     <div class="faq-item"><button class="faq-q">As imagens já podem ser usadas comercialmente?<span>+</span></button><div class="faq-a">Algumas imagens são referências de bancos de imagens ou páginas de produto. Antes de publicar a loja, substitua as fotos por imagens licenciadas/autorizadas pelos fornecedores.</div></div>
   </div>
@@ -328,7 +328,7 @@ footer{border-top:1px solid var(--line);padding:60px 0 28px;background:#050505}.
     <div class="summary-line"><span>Frete</span><span id="shipping">A calcular</span></div>
     <div class="summary-total"><span>Total</span><span id="total">R$ 0,00</span></div>
     <button class="btn primary" style="width:100%" onclick="checkout()">Continuar para pagamento →</button>
-    <div style="text-align:center;color:#555;font-size:9px;margin-top:11px">Checkout demonstrativo · conecte seu gateway para vender de verdade.</div>
+    <div style="text-align:center;color:#555;font-size:9px;margin-top:11px">Checkout com PIX pela PanteraPay.</div>
   </div>
 </aside>
 </div>
@@ -467,7 +467,7 @@ function calcShipping(){
  const cep=document.getElementById('cep').value.replace(/\D/g,'');
  if(cep.length!==8){document.getElementById('shipMsg').textContent='Digite um CEP válido com 8 números.';return}
  const sub=cart.reduce((s,id)=>s+products.find(p=>p.id===id).price,0);
- shipping=sub>=199?0:19.90;document.getElementById('shipMsg').textContent=shipping===0?'Frete grátis para este pedido.':'Frete estimado: R$ 19,90';
+ const disc=coupon?sub*.1:0; shipping=Math.max(0,sub-disc)>=199?0:19.90;document.getElementById('shipMsg').textContent=shipping===0?'Frete grátis para este pedido.':'Frete estimado: R$ 19,90';
  updateCart();
 }
 function quick(id){
@@ -488,40 +488,116 @@ function checkout(){
 function currentOrderTotal(){
  const sub=cart.reduce((s,id)=>s+products.find(p=>p.id===id).price,0);
  const disc=coupon?sub*.1:0;
- const ship=(shipping!==null&&shipping!==undefined)?(shipping||0):(sub>=199?0:0);
- return Math.max(0,sub-disc+ship);
+ const taxable=Math.max(0,sub-disc);
+ const ship=(shipping!==null&&shipping!==undefined&&shipping!==0)?shipping:(taxable>=199?0:(cart.length?19.90:0));
+ return Math.max(0,taxable+ship);
+}
+function checkoutData(){
+ return {
+  name:document.getElementById('checkoutName').value.trim(),
+  email:document.getElementById('checkoutEmail').value.trim(),
+  phone:document.getElementById('checkoutPhone').value.replace(/\D/g,''),
+  cpf:document.getElementById('checkoutCpf').value.replace(/\D/g,''),
+  cep:document.getElementById('checkoutCep').value.replace(/\D/g,''),
+  street:document.getElementById('checkoutStreet').value.trim(),
+  number:document.getElementById('checkoutNumber').value.trim(),
+  complement:document.getElementById('checkoutComplement').value.trim(),
+  neighborhood:document.getElementById('checkoutNeighborhood').value.trim(),
+  city:document.getElementById('checkoutCity').value.trim(),
+  state:document.getElementById('checkoutState').value.trim(),
+  terms:document.getElementById('checkoutTerms').checked
+ };
+}
+function validateCheckout(){
+ const d=checkoutData();
+ const errors=[];
+ if(d.name.length<3)errors.push('nome');
+ if(!/^\S+@\S+\.\S+$/.test(d.email))errors.push('e-mail');
+ if(d.phone.length<10)errors.push('telefone');
+ if(d.cpf.length!==11)errors.push('CPF');
+ if(d.cep.length!==8)errors.push('CEP');
+ if(!d.street)errors.push('endereço');
+ if(!d.number)errors.push('número');
+ if(!d.neighborhood)errors.push('bairro');
+ if(!d.city)errors.push('cidade');
+ if(d.state.length!==2)errors.push('UF');
+ if(!d.terms)errors.push('aceite dos termos');
+ if(errors.length){toast('Confira: '+errors.slice(0,3).join(', '));return null}
+ return d;
+}
+function maskField(id,pattern){
+ const el=document.getElementById(id);if(!el)return;
+ el.addEventListener('input',()=>{let v=el.value.replace(/\D/g,'');el.value=pattern(v)});
+}
+function formatCpf(v){return v.slice(0,11).replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d{1,2})$/,'$1-$2')}
+function formatPhone(v){return v.length>10?v.slice(0,11).replace(/(\d{2})(\d{5})(\d{4})/,'($1) $2-$3'):v.slice(0,10).replace(/(\d{2})(\d{4})(\d{4})/,'($1) $2-$3')}
+function formatCep(v){return v.slice(0,8).replace(/(\d{5})(\d)/,'$1-$2')}
+async function lookupCep(){
+ const cep=document.getElementById('checkoutCep').value.replace(/\D/g,'');
+ if(cep.length!==8)return;
+ try{
+  const r=await fetch('https://viacep.com.br/ws/'+cep+'/json/');const d=await r.json();
+  if(d.erro){toast('CEP não encontrado');return}
+  document.getElementById('checkoutStreet').value=d.logradouro||'';
+  document.getElementById('checkoutNeighborhood').value=d.bairro||'';
+  document.getElementById('checkoutCity').value=d.localidade||'';
+  document.getElementById('checkoutState').value=d.uf||'';
+  document.getElementById('checkoutNumber').focus();
+  const sub=cart.reduce((s,id)=>s+products.find(p=>p.id===id).price,0);shipping=sub>=199?0:19.90;updateCheckoutTotals();
+ }catch{toast('Não foi possível consultar o CEP agora')}
+}
+function updateCheckoutTotals(){
+ const sub=cart.reduce((s,id)=>s+products.find(p=>p.id===id).price,0),disc=coupon?sub*.1:0,taxable=Math.max(0,sub-disc),ship=(shipping!==null&&shipping!==undefined&&shipping!==0)?shipping:(taxable>=199?0:19.90);
+ document.getElementById('checkoutSubtotal').textContent=brl(sub);document.getElementById('checkoutDiscount').textContent=disc?'− '+brl(disc):'R$ 0,00';document.getElementById('checkoutShipping').textContent=ship===0?'Grátis':brl(ship);document.getElementById('checkoutGrandTotal').textContent=brl(Math.max(0,sub-disc+ship));
 }
 function openPayment(){
  const map={};cart.forEach(id=>map[id]=(map[id]||0)+1);
  document.getElementById('paymentOrder').innerHTML=Object.entries(map).map(([id,qty])=>{const p=products.find(x=>x.id==id);return `<div class="payment-order-row"><span>${qty}× ${p.name}</span><strong>${brl(p.price*qty)}</strong></div>`}).join('');
- document.getElementById('paymentTotal').textContent=brl(currentOrderTotal());
  document.getElementById('paymentStart').hidden=false;document.getElementById('paymentPix').hidden=true;document.getElementById('paymentSuccess').hidden=true;document.getElementById('paymentError').hidden=true;
+ document.getElementById('paymentForm').hidden=false;
+ document.getElementById('checkoutTerms').checked=false;
+ ['checkoutName','checkoutEmail','checkoutPhone','checkoutCpf','checkoutCep','checkoutStreet','checkoutNumber','checkoutComplement','checkoutNeighborhood','checkoutCity','checkoutState'].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.remove('invalid')});
+ updateCheckoutTotals();
  const back=document.getElementById('paymentBackdrop');back.classList.add('open');back.setAttribute('aria-hidden','false');document.body.classList.add('lock');
 }
 function closePayment(){clearInterval(window.__paymentPoll);const back=document.getElementById('paymentBackdrop');back.classList.remove('open');back.setAttribute('aria-hidden','true');document.body.classList.remove('lock');}
 async function createPixPayment(){
- const amount=Math.round(currentOrderTotal()*100);const btn=document.querySelector('.payment-action');btn.disabled=true;btn.textContent='Gerando PIX…';
+ const customer=validateCheckout();if(!customer)return;
+ const btn=document.querySelector('.payment-action');btn.disabled=true;btn.textContent='Preparando pedido…';document.getElementById('checkoutLoading').classList.add('show');
+ const qtyMap={};cart.forEach(id=>qtyMap[id]=(qtyMap[id]||0)+1);const items=Object.entries(qtyMap).map(([id,quantity])=>({productId:Number(id),quantity}));
  try{
-  const r=await fetch('/api/create-payment',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({amount})});
-  const data=await r.json();if(!r.ok)throw new Error(data.error||'Não foi possível criar o pagamento.');
-  document.getElementById('paymentStart').hidden=true;document.getElementById('paymentPix').hidden=false;
+  const orderRes=await fetch('/api/create-order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({customer,items,coupon:coupon?'SPOOKY10':null,terms:document.getElementById('checkoutTerms').checked})});
+  const orderData=await orderRes.json().catch(()=>({}));
+  if(!orderRes.ok)throw new Error(orderData.error||'Não foi possível criar o pedido.');
+  const orderId=orderData.orderId;
+  const payRes=await fetch('/api/create-payment',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({orderId})});
+  const data=await payRes.json().catch(()=>({}));
+  if(!payRes.ok)throw new Error(data.error||'Não foi possível criar o pagamento.');
+  localStorage.setItem('spooky_pending_order',JSON.stringify({orderId,transactionId:data.id}));
+  document.getElementById('paymentForm').hidden=true;document.getElementById('paymentStart').hidden=true;document.getElementById('paymentPix').hidden=false;
   document.getElementById('paymentQr').src=data.qrCodeBase64||'';document.getElementById('pixCode').value=data.copyPaste||'';
-  document.getElementById('paymentPixAmount').textContent=brl((Number(data.amount)||amount)/100);document.getElementById('paymentStatusText').textContent='Aguardando pagamento';
+  document.getElementById('paymentPixAmount').textContent=brl((Number(data.amount)||Number(orderData.totalCents)||0)/100);document.getElementById('paymentStatusText').textContent='Aguardando pagamento';
   document.getElementById('paymentExpire').textContent=data.expiresAt?`Válido até ${new Date(data.expiresAt).toLocaleString('pt-BR')}`:'';
   clearInterval(window.__paymentPoll);window.__paymentPoll=setInterval(()=>pollPayment(data.id),5000);await pollPayment(data.id);
- }catch(e){document.getElementById('paymentError').hidden=false;document.getElementById('paymentError').textContent=e.message||'Erro ao iniciar o pagamento.'}
- finally{btn.disabled=false;btn.textContent='Gerar pagamento PIX'}
+ }catch(e){document.getElementById('paymentError').hidden=false;document.getElementById('paymentError').textContent=e.message||'Erro ao iniciar o pedido.'}
+ finally{btn.disabled=false;btn.textContent='Gerar pagamento PIX';document.getElementById('checkoutLoading').classList.remove('show')}
 }
 async function pollPayment(id){
  try{
   const r=await fetch('/api/payment-status?id='+encodeURIComponent(id));if(!r.ok)return;const data=await r.json();const status=String(data.status||'').toLowerCase();
-  if(['approved','paid','completed','success'].includes(status)){clearInterval(window.__paymentPoll);document.getElementById('paymentPix').hidden=true;document.getElementById('paymentSuccess').hidden=false;cart=[];save();updateCart()}
+  if(['approved','paid','completed','success'].includes(status)){clearInterval(window.__paymentPoll);document.getElementById('paymentPix').hidden=true;document.getElementById('paymentSuccess').hidden=false;document.getElementById('paymentSuccessOrder').textContent=data.orderId?'Pedido '+data.orderId:'';cart=[];coupon=0;shipping=0;localStorage.removeItem('spooky_pending_order');save();updateCart()}
   else if(['failed','expired','cancelled','canceled'].includes(status)){clearInterval(window.__paymentPoll);document.getElementById('paymentStatusText').textContent='Pagamento não concluído';document.getElementById('paymentError').hidden=false;document.getElementById('paymentError').textContent='Esta cobrança não está mais disponível. Feche e gere um novo PIX.'}
  }catch(e){}
 }
 async function copyPixCode(){const code=document.getElementById('pixCode').value;if(!code)return;try{await navigator.clipboard.writeText(code);toast('Código PIX copiado')}catch{document.getElementById('pixCode').select();document.execCommand('copy');toast('Código PIX copiado')}}
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(window.__toast);window.__toast=setTimeout(()=>t.classList.remove('show'),2300)}
 function focusSearch(){document.getElementById('search').focus();document.getElementById('colecao').scrollIntoView({behavior:'smooth'})}
+document.addEventListener('DOMContentLoaded',()=>{
+ maskField('checkoutCpf',formatCpf);maskField('checkoutPhone',formatPhone);maskField('checkoutCep',formatCep);
+ document.getElementById('checkoutCep')?.addEventListener('blur',lookupCep);
+ document.getElementById('checkoutState')?.addEventListener('input',e=>e.target.value=e.target.value.toUpperCase().replace(/[^A-Z]/g,'').slice(0,2));
+});
+
 function toggleMobile(){
  const links=document.querySelector('.navlinks');links.classList.toggle('mobile-open');
 }
@@ -625,16 +701,49 @@ updateBadges();render();updateCart();
 </script>
 
 <div class="payment-backdrop" id="paymentBackdrop" aria-hidden="true">
-  <section class="payment-modal" role="dialog" aria-modal="true" aria-labelledby="paymentTitle">
+  <section class="payment-modal wide" role="dialog" aria-modal="true" aria-labelledby="paymentTitle">
     <button class="payment-close" onclick="closePayment()" aria-label="Fechar">×</button>
     <div class="payment-kicker">CHECKOUT SEGURO</div>
     <h2 id="paymentTitle">Finalize seu pedido</h2>
     <p class="payment-sub">Pagamento via PIX. O código é gerado pela PanteraPay.</p>
     <div id="paymentStart">
-      <div class="payment-order" id="paymentOrder"></div>
-      <div class="payment-total"><span>Total</span><strong id="paymentTotal">R$ 0,00</strong></div>
-      <button class="btn primary payment-action" onclick="createPixPayment()">Gerar pagamento PIX</button>
-      <div class="payment-safe">Sua chave secreta de pagamento permanece no servidor.</div>
+      <div class="checkout-grid" id="paymentForm">
+        <div class="checkout-card">
+          <h3>Seus dados</h3>
+          <div class="checkout-section-label">Contato</div>
+          <div class="checkout-fields">
+            <div class="checkout-field full"><label for="checkoutName">Nome completo</label><input id="checkoutName" autocomplete="name" placeholder="Seu nome completo"></div>
+            <div class="checkout-field"><label for="checkoutEmail">E-mail</label><input id="checkoutEmail" type="email" autocomplete="email" placeholder="voce@email.com"></div>
+            <div class="checkout-field"><label for="checkoutPhone">WhatsApp / telefone</label><input id="checkoutPhone" inputmode="tel" autocomplete="tel" placeholder="(11) 99999-9999"></div>
+            <div class="checkout-field full"><label for="checkoutCpf">CPF</label><input id="checkoutCpf" inputmode="numeric" autocomplete="off" placeholder="000.000.000-00"></div>
+          </div>
+          <div class="checkout-section-label">Entrega</div>
+          <div class="checkout-fields">
+            <div class="checkout-field"><label for="checkoutCep">CEP</label><input id="checkoutCep" inputmode="numeric" autocomplete="postal-code" maxlength="9" placeholder="00000-000"></div>
+            <div class="checkout-field"><label for="checkoutState">UF</label><input id="checkoutState" maxlength="2" autocomplete="address-level1" placeholder="SP"></div>
+            <div class="checkout-field full"><label for="checkoutStreet">Endereço</label><input id="checkoutStreet" autocomplete="street-address" placeholder="Rua, avenida..." ></div>
+            <div class="checkout-field"><label for="checkoutNumber">Número</label><input id="checkoutNumber" autocomplete="off" placeholder="123"></div>
+            <div class="checkout-field"><label for="checkoutComplement">Complemento</label><input id="checkoutComplement" autocomplete="off" placeholder="Apto, bloco... (opcional)"></div>
+            <div class="checkout-field"><label for="checkoutNeighborhood">Bairro</label><input id="checkoutNeighborhood" autocomplete="address-level3" placeholder="Seu bairro"></div>
+            <div class="checkout-field"><label for="checkoutCity">Cidade</label><input id="checkoutCity" autocomplete="address-level2" placeholder="Sua cidade"></div>
+          </div>
+          <div class="checkout-help">Ao informar o CEP, tentaremos preencher automaticamente cidade, estado, bairro e endereço.</div>
+          <label class="checkout-check"><input type="checkbox" id="checkoutTerms"><span>Confirmo que os dados informados estão corretos e concordo com os termos e a política de privacidade da loja.</span></label>
+        </div>
+        <div class="checkout-card checkout-summary">
+          <h3>Resumo do pedido</h3>
+          <div class="checkout-summary-list" id="paymentOrder"></div>
+          <div class="checkout-totals">
+            <div class="checkout-total-line"><span>Subtotal</span><span id="checkoutSubtotal">R$ 0,00</span></div>
+            <div class="checkout-total-line"><span>Desconto</span><span id="checkoutDiscount">R$ 0,00</span></div>
+            <div class="checkout-total-line"><span>Frete estimado</span><span id="checkoutShipping">A calcular</span></div>
+            <div class="checkout-total-line final"><span>Total</span><strong id="checkoutGrandTotal">R$ 0,00</strong></div>
+          </div>
+          <button class="btn primary payment-action" onclick="createPixPayment()">Continuar para PIX</button>
+          <div id="checkoutLoading" class="checkout-loading">Preparando sua cobrança com segurança…</div>
+          <div class="checkout-secure"><span>●</span><span>Pagamento processado pela PanteraPay. Sua chave secreta permanece no servidor.</span></div>
+        </div>
+      </div>
     </div>
     <div id="paymentPix" class="payment-pix" hidden>
       <div class="payment-status"><span class="status-dot"></span><span id="paymentStatusText">Aguardando pagamento</span></div>
@@ -647,7 +756,7 @@ updateBadges();render();updateCart();
     <div id="paymentSuccess" class="payment-success" hidden>
       <div class="success-mark">✓</div>
       <h3>Pagamento confirmado</h3>
-      <p>Seu pedido foi recebido pela Spooky Store.</p>
+      <p>Seu pedido foi recebido pela Spooky Store.</p><strong id="paymentSuccessOrder" style="display:block;color:#bdb7b0;font-size:11px;margin:-8px 0 18px"></strong>
       <button class="btn primary" onclick="closePayment()">Voltar para a loja</button>
     </div>
     <div id="paymentError" class="payment-error" hidden></div>
