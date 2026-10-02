@@ -307,6 +307,35 @@ footer .footer-grid>div:not(.footer-brand) a{display:block!important;margin:0 0 
 @media(max-width:560px){#paymentBackdrop.open .payment-modal{padding:20px 15px!important;border-radius:20px!important;max-height:96vh!important}#paymentBackdrop.open .checkout-fields{grid-template-columns:1fr!important;gap:11px!important}#paymentBackdrop.open .checkout-field.full{grid-column:auto!important}footer .footer-grid{grid-template-columns:1fr 1fr!important}}
 
 </style>
+<style id="spooky-final-ui">
+/* Product imagery */
+.product-image{background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important}
+.cart-thumb{background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important}
+.modal-img{background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important}
+/* Footer */
+footer .footer-grid{display:grid!important;grid-template-columns:minmax(250px,1.45fr) repeat(3,minmax(150px,.75fr))!important;gap:44px!important;align-items:start!important}
+footer .footer-grid>div:not(.footer-brand) a{display:block!important;margin:0 0 11px!important;line-height:1.45!important;white-space:normal!important;width:max-content;max-width:100%}
+/* Cart drawer */
+#cartBackdrop.open{display:block!important;position:fixed!important;inset:0!important;z-index:11000!important;background:rgba(0,0,0,.72)!important;backdrop-filter:blur(12px)!important}
+#cartBackdrop.open .cart{position:absolute!important;right:0!important;top:0!important;height:100%!important;width:min(455px,100%)!important;box-sizing:border-box!important;display:flex!important;flex-direction:column!important;background:#0c0c0c!important;border-left:1px solid var(--line)!important;padding:22px!important;overflow:auto!important}
+#cartBackdrop.open .cart-list{flex:1 1 auto!important;min-height:0!important}
+/* Payment modal */
+#paymentBackdrop.open{display:flex!important;position:fixed!important;inset:0!important;z-index:12000!important;align-items:center!important;justify-content:center!important;padding:20px!important;box-sizing:border-box!important;background:rgba(0,0,0,.78)!important;backdrop-filter:blur(18px)!important}
+#paymentBackdrop.open .payment-modal{position:relative!important;width:min(1040px,100%)!important;max-height:min(900px,94vh)!important;overflow:auto!important;box-sizing:border-box!important;margin:0!important;padding:34px!important;background:linear-gradient(180deg,#151515,#0b0b0b)!important;border:1px solid rgba(255,255,255,.1)!important;border-radius:26px!important;color:var(--text)!important}
+#paymentBackdrop.open .checkout-grid{display:grid!important;grid-template-columns:minmax(0,1.35fr) minmax(300px,.75fr)!important;gap:18px!important;align-items:start!important}
+#paymentBackdrop.open .checkout-card{display:block!important;box-sizing:border-box!important;width:100%!important;background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.018))!important;border:1px solid rgba(255,255,255,.08)!important;border-radius:20px!important;padding:22px!important}
+#paymentBackdrop.open .checkout-fields{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:13px!important}
+#paymentBackdrop.open .checkout-field{display:flex!important;flex-direction:column!important;gap:7px!important;min-width:0!important}
+#paymentBackdrop.open .checkout-field.full{grid-column:1/-1!important}
+#paymentBackdrop.open .checkout-field label{display:block!important;color:#aaa49d!important;font-size:10px!important;font-weight:700!important}
+#paymentBackdrop.open .checkout-field input{display:block!important;width:100%!important;height:45px!important;min-width:0!important;box-sizing:border-box!important;background:#0c0c0c!important;border:1px solid rgba(255,255,255,.1)!important;border-radius:11px!important;color:#f4efe8!important;padding:0 13px!important;font-size:13px!important}
+#paymentBackdrop.open .checkout-summary{position:sticky!important;top:0!important}
+#paymentBackdrop.open .payment-close{position:absolute!important;right:17px!important;top:15px!important}
+#paymentBackdrop.open .payment-action{width:100%!important;height:50px!important;margin-top:13px!important}
+#paymentBackdrop.open .checkout-check{display:flex!important;align-items:flex-start!important;gap:9px!important}
+@media(max-width:820px){#paymentBackdrop.open{padding:10px!important}#paymentBackdrop.open .payment-modal{width:min(680px,100%)!important;padding:24px!important;max-height:94vh!important}#paymentBackdrop.open .checkout-grid{grid-template-columns:1fr!important}#paymentBackdrop.open .checkout-summary{position:static!important}footer .footer-grid{grid-template-columns:1fr 1fr!important;gap:28px 22px!important}}
+@media(max-width:560px){#paymentBackdrop.open .payment-modal{padding:20px 15px!important;border-radius:20px!important}#paymentBackdrop.open .checkout-fields{grid-template-columns:1fr!important}#paymentBackdrop.open .checkout-field.full{grid-column:auto!important}footer .footer-grid{grid-template-columns:1fr!important}}
+</style>
 </head>
 <body>
 <div class="spooky-atmosphere" aria-hidden="true">
@@ -469,30 +498,30 @@ footer .footer-grid>div:not(.footer-brand) a{display:block!important;margin:0 0 
 
 <script>
 const products=[
-{id:1,name:"Fantasia Bruxa Preta Magic",cat:"fantasia",price:149.90,old:179.90,badge:"Destaque",rating:4.9,reviews:87,img:"https://images.pexels.com/photos/5600005/pexels-photo-5600005.jpeg?auto=compress&cs=tinysrgb&w=1200"},
-{id:2,name:"Fantasia Vampira Vitoriana",cat:"fantasia",price:189.90,old:229.90,badge:"Oferta",rating:4.8,reviews:64,img:"https://images.pexels.com/photos/20485655/pexels-photo-20485655.jpeg?auto=compress&cs=tinysrgb&w=1200"},
-{id:3,name:"Kit 30 Enfeites Halloween",cat:"decoracao",price:49.99,old:69.90,badge:"Mais vendido",rating:4.9,reviews:132,img:"https://images.pexels.com/photos/5477530/pexels-photo-5477530.jpeg?auto=compress&cs=tinysrgb&w=1200"},
-{id:4,name:"Varal LED de Abóboras",cat:"decoracao",price:38.90,old:49.90,badge:"Novo",rating:4.7,reviews:51,img:"https://images.pexels.com/photos/6495932/pexels-photo-6495932.jpeg?auto=compress&cs=tinysrgb&w=1200"},
-{id:5,name:"Máscara Jason Premium",cat:"mascara",price:36.00,old:49.90,badge:"Destaque",rating:4.8,reviews:118,img:"https://images.pexels.com/photos/12725754/pexels-photo-12725754.jpeg?auto=compress&cs=tinysrgb&w=1200"},
-{id:6,name:"Máscara Bruxa Verde Realista",cat:"mascara",price:86.90,old:99.90,badge:"Premium",rating:4.8,reviews:43,img:"https://images.pexels.com/photos/29344308/pexels-photo-29344308.jpeg?auto=compress&cs=tinysrgb&w=1200"},
-{id:7,name:"Tiara Halloween com Caveira",cat:"acessorio",price:18.90,old:24.90,badge:"Oferta",rating:4.7,reviews:77,img:"https://images.pexels.com/photos/9740338/pexels-photo-9740338.jpeg?auto=compress&cs=tinysrgb&w=1200"},
-{id:8,name:"Kit Enfeites Aranha & Morcego",cat:"decoracao",price:28.90,old:39.90,badge:"Kit",rating:4.8,reviews:92,img:"https://images.pexels.com/photos/5477591/pexels-photo-5477591.jpeg?auto=compress&cs=tinysrgb&w=1200"},
-{id:9,name:"Fantasia Mulher-Gato",cat:"fantasia",price:123.49,old:159.90,badge:"Popular",rating:4.8,reviews:73,img:"https://images.pexels.com/photos/5600063/pexels-photo-5600063.jpeg?auto=compress&cs=tinysrgb&w=1200"},
-{id:10,name:"Fantasia Pennywise",cat:"fantasia",price:199.90,old:256.90,badge:"Destaque",rating:4.9,reviews:105,img:"https://images.pexels.com/photos/13070402/pexels-photo-13070402.jpeg?auto=compress&cs=tinysrgb&w=1200"},
-{id:11,name:"Fantasia Fantasma Clássica",cat:"fantasia",price:119.90,old:149.90,badge:"Novo",rating:4.6,reviews:38,img:"https://images.pexels.com/photos/14023737/pexels-photo-14023737.jpeg?auto=compress&cs=tinysrgb&w=1200"},
-{id:12,name:"Enfeite Caveira com Véu",cat:"decoracao",price:56.90,old:69.90,badge:"Premium",rating:4.9,reviews:29,img:"https://images.pexels.com/photos/14009001/pexels-photo-14009001.jpeg?auto=compress&cs=tinysrgb&w=1200"},
-{id:13,name:"Capa Vampiro Premium",cat:"fantasia",price:89.90,old:119.90,badge:"Novo",rating:4.8,reviews:61,img:"https://images.pexels.com/photos/14241337/pexels-photo-14241337.jpeg?auto=compress&cs=tinysrgb&w=1200"},
-{id:14,name:"Chapéu de Bruxa Premium",cat:"acessorio",price:34.90,old:44.90,badge:"Favorito",rating:4.9,reviews:144,img:"https://images.pexels.com/photos/27914105/pexels-photo-27914105.jpeg?auto=compress&cs=tinysrgb&w=1200"},
-{id:15,name:"Lanterna LED Abóbora",cat:"decoracao",price:44.90,old:59.90,badge:"Novo",rating:4.8,reviews:82,img:"https://images.pexels.com/photos/14562304/pexels-photo-14562304.jpeg?auto=compress&cs=tinysrgb&w=1200"},
-{id:16,name:"Máscara Caveira Dark",cat:"mascara",price:39.90,old:54.90,badge:"Oferta",rating:4.7,reviews:54,img:"https://images.pexels.com/photos/29030549/pexels-photo-29030549.jpeg?auto=compress&cs=tinysrgb&w=1200"},
-{id:17,name:"Colar Choker Gótico",cat:"acessorio",price:29.90,old:39.90,badge:"Best seller",rating:4.9,reviews:176,img:"https://images.pexels.com/photos/9740338/pexels-photo-9740338.jpeg?auto=compress&cs=tinysrgb&w=1200"},
-{id:18,name:"Luz Neon Ghost",cat:"decoracao",price:79.90,old:99.90,badge:"Premium",rating:4.8,reviews:46,img:"https://images.pexels.com/photos/18884940/pexels-photo-18884940.jpeg?auto=compress&cs=tinysrgb&w=1200"},
-{id:19,name:"Kit Presilhas Morcego",cat:"acessorio",price:24.90,old:32.90,badge:"Oferta",rating:4.8,reviews:71,img:"https://images.pexels.com/photos/33815324/pexels-photo-33815324.jpeg?auto=compress&cs=tinysrgb&w=1200"},
-{id:20,name:"Fantasia Rainha Sombria",cat:"fantasia",price:169.90,old:219.90,badge:"Premium",rating:4.9,reviews:39,img:"https://images.pexels.com/photos/5600071/pexels-photo-5600071.jpeg?auto=compress&cs=tinysrgb&w=1200"},
-{id:21,name:"Castiçal Gótico 3 Braços",cat:"decoracao",price:64.90,old:84.90,badge:"Destaque",rating:4.8,reviews:67,img:"https://images.pexels.com/photos/10113123/pexels-photo-10113123.jpeg?auto=compress&cs=tinysrgb&w=1200"},
-{id:22,name:"Máscara Fantasma Branca",cat:"mascara",price:24.90,old:34.90,badge:"Oferta",rating:4.7,reviews:101,img:"https://images.pexels.com/photos/29344308/pexels-photo-29344308.jpeg?auto=compress&cs=tinysrgb&w=1200"},
-{id:23,name:"Capa com Capuz Sombria",cat:"fantasia",price:79.90,old:99.90,badge:"Novo",rating:4.8,reviews:48,img:"https://images.pexels.com/photos/5407942/pexels-photo-5407942.jpeg?auto=compress&cs=tinysrgb&w=1200"},
-{id:24,name:"Kit 6 Velas LED",cat:"decoracao",price:32.90,old:44.90,badge:"Kit",rating:4.9,reviews:120,img:"https://images.pexels.com/photos/14059510/pexels-photo-14059510.jpeg?auto=compress&cs=tinysrgb&w=1200"}
+{id:1,name:'Fantasia de Bruxa Sombria',cat:'fantasia',price:149.90,old:179.90,badge:'Destaque',rating:4.9,reviews:87,img:"assets/products/fantasia_bruxa_sombria.webp"},
+{id:2,name:'Fantasia de Vampira',cat:'fantasia',price:189.90,old:229.90,badge:'Oferta',rating:4.8,reviews:64,img:"assets/products/fantasia_vampira.webp"},
+{id:3,name:'Fantasia de Ceifador',cat:'fantasia',price:159.90,old:199.90,badge:'Destaque',rating:4.9,reviews:132,img:"assets/products/fantasia_ceifador.webp"},
+{id:4,name:'Fantasia de Palhaço Sombrio',cat:'fantasia',price:139.90,old:179.90,badge:'Novo',rating:4.7,reviews:51,img:"assets/products/fantasia_palhaco_sombrio.webp"},
+{id:5,name:'Fantasia de Esqueleto',cat:'fantasia',price:129.90,old:159.90,badge:'Oferta',rating:4.8,reviews:118,img:"assets/products/fantasia_esqueleto.webp"},
+{id:6,name:'Fantasia de Múmia',cat:'fantasia',price:119.90,old:149.90,badge:'Premium',rating:4.8,reviews:43,img:"assets/products/fantasia_mumia.webp"},
+{id:7,name:'Abóbora Decorativa Halloween',cat:'decoracao',price:44.90,old:59.90,badge:'Oferta',rating:4.7,reviews:77,img:"assets/products/decor_abobora_halloween.webp"},
+{id:8,name:'Teia de Aranha Decorativa',cat:'decoracao',price:28.90,old:39.90,badge:'Kit',rating:4.8,reviews:92,img:"assets/products/decor_teia_aranha.webp"},
+{id:9,name:'Kit de Velas Halloween',cat:'decoracao',price:49.90,old:69.90,badge:'Popular',rating:4.8,reviews:73,img:"assets/products/decor_kit_velas_halloween.webp"},
+{id:10,name:'Caveira Decorativa',cat:'decoracao',price:56.90,old:69.90,badge:'Destaque',rating:4.9,reviews:105,img:"assets/products/decor_caveira.webp"},
+{id:11,name:'Placa Halloween',cat:'decoracao',price:34.90,old:49.90,badge:'Novo',rating:4.6,reviews:38,img:"assets/products/decor_placa_halloween.webp"},
+{id:12,name:'Luzes LED Halloween',cat:'decoracao',price:38.90,old:49.90,badge:'Premium',rating:4.9,reviews:29,img:"assets/products/decor_luzes_led_halloween.webp"},
+{id:13,name:'Chapéu de Bruxa',cat:'acessorio',price:34.90,old:44.90,badge:'Novo',rating:4.8,reviews:61,img:"assets/products/acessorio_chapeu_bruxa.webp"},
+{id:14,name:'Capa Preta Halloween',cat:'acessorio',price:59.90,old:79.90,badge:'Favorito',rating:4.9,reviews:144,img:"assets/products/acessorio_capa_preta.webp"},
+{id:15,name:'Luvas de Halloween',cat:'acessorio',price:29.90,old:39.90,badge:'Oferta',rating:4.8,reviews:82,img:"assets/products/acessorio_luvas_halloween.webp"},
+{id:16,name:'Colar Gótico',cat:'acessorio',price:29.90,old:39.90,badge:'Oferta',rating:4.7,reviews:54,img:"assets/products/acessorio_colar_gotico.webp"},
+{id:17,name:'Tiara de Halloween',cat:'acessorio',price:18.90,old:24.90,badge:'Best seller',rating:4.9,reviews:176,img:"assets/products/acessorio_tiara_halloween.webp"},
+{id:18,name:'Kit de Anéis Halloween',cat:'acessorio',price:24.90,old:32.90,badge:'Premium',rating:4.8,reviews:46,img:"assets/products/acessorio_kit_aneis_halloween.webp"},
+{id:19,name:'Máscara de Caveira',cat:'mascara',price:39.90,old:54.90,badge:'Oferta',rating:4.8,reviews:71,img:"assets/products/mascara_caveira.webp"},
+{id:20,name:'Máscara de Palhaço',cat:'mascara',price:49.90,old:69.90,badge:'Destaque',rating:4.9,reviews:39,img:"assets/products/mascara_palhaco.webp"},
+{id:21,name:'Máscara de Vampiro',cat:'mascara',price:44.90,old:59.90,badge:'Premium',rating:4.8,reviews:67,img:"assets/products/mascara_vampiro.webp"},
+{id:22,name:'Máscara de Demônio',cat:'mascara',price:54.90,old:74.90,badge:'Oferta',rating:4.7,reviews:101,img:"assets/products/mascara_demonio.webp"},
+{id:23,name:'Máscara de Slasher',cat:'mascara',price:36.00,old:49.90,badge:'Novo',rating:4.8,reviews:48,img:"assets/products/mascara_slasher.webp"},
+{id:24,name:'Máscara de Esqueleto',cat:'mascara',price:39.90,old:54.90,badge:'Kit',rating:4.9,reviews:120,img:"assets/products/mascara_esqueleto.webp"},
 ];
 
 const brl=v=>v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
