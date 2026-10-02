@@ -118,11 +118,11 @@ header.scrolled{background:rgba(7,7,7,.94);border-color:var(--line);box-shadow:0
 
 /* faq/footer */
 .faq{max-width:850px;margin:auto}.faq-item{border-top:1px solid var(--line)}.faq-item:last-child{border-bottom:1px solid var(--line)}.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;padding:20px 0;background:none;border:0;color:white;text-align:left;font-weight:750}.faq-q span{color:var(--orange);font-size:20px}.faq-a{max-height:0;overflow:hidden;color:#777;font-size:12px;line-height:1.7;transition:max-height .35s}.faq-item.open .faq-a{max-height:130px;padding-bottom:20px}
-footer{border-top:1px solid var(--line);padding:60px 0 28px;background:#050505}.footer-grid{display:grid;grid-template-columns:1.4fr .7fr .7fr .9fr;gap:40px}.footer-brand p{color:#777;max-width:320px;font-size:12px;line-height:1.7}.footer h4{font-size:11px;text-transform:uppercase;letter-spacing:.15em;color:#aaa}.footer a{display:block;color:#777;font-size:12px;margin:11px 0}.footer a:hover{color:white}.footer-bottom{border-top:1px solid var(--line);margin-top:45px;padding-top:20px;color:#555;font-size:10px;display:flex;justify-content:space-between;gap:20px}
+footer{border-top:1px solid var(--line);padding:68px 0 30px;background:#050505}.footer-grid{display:grid;grid-template-columns:minmax(260px,1.45fr) repeat(3,minmax(150px,.75fr));gap:56px;align-items:start}.footer-brand{min-width:0}.footer-brand .brand{display:block;width:max-content}.footer-brand p{color:#777;max-width:320px;font-size:12px;line-height:1.7}footer h4{font-size:11px;text-transform:uppercase;letter-spacing:.15em;color:#aaa;margin:0 0 16px}footer a{display:block!important;color:#777;font-size:12px;line-height:1.45;margin:0 0 12px;text-decoration:none}footer a:hover{color:#fff}.footer-bottom{border-top:1px solid var(--line);margin-top:45px;padding-top:20px;color:#555;font-size:10px;display:flex;justify-content:space-between;gap:20px}
 
 /* ===== BRAND + ORDERS ===== */
 .brand-logo{display:block;width:148px;height:52px;object-fit:contain;object-position:left center;filter:drop-shadow(0 0 14px rgba(255,106,0,.08))}
-.footer-brand .brand-logo{width:205px;height:72px;margin-left:-6px}
+.footer-brand .brand-logo{width:92px;height:92px;margin-left:-5px;object-fit:contain;object-position:center;filter:drop-shadow(0 0 18px rgba(255,106,0,.12))
 .orders-section{padding-top:10px}
 .orders-panel{border:1px solid var(--line);border-radius:24px;background:linear-gradient(180deg,#101010,#090909);overflow:hidden}
 .orders-empty{padding:55px 24px;text-align:center}
@@ -177,7 +177,7 @@ footer{border-top:1px solid var(--line);padding:60px 0 28px;background:#050505}.
  .grid{grid-template-columns:1fr 1fr;gap:9px}.product{border-radius:15px}.product-image{height:220px}.product-info{padding:10px}.product-name{font-size:12px;min-height:34px}.price{font-size:15px}.old{font-size:9px}.add{height:38px;font-size:10px}.quick{opacity:1;transform:none;width:33px;height:33px}.wish{width:33px;height:33px}
  .promo{grid-template-columns:1fr}.promo-copy{padding:30px}.promo-media{min-height:280px}.promo-media:after{background:linear-gradient(180deg,transparent,#111)}
  .features{grid-template-columns:1fr}.feature{border-right:0!important;border-bottom:1px solid var(--line)}.feature:last-child{border-bottom:0}
- .footer-grid{grid-template-columns:1fr 1fr;gap:25px}.footer-brand{grid-column:1/-1}.footer-bottom{display:block}.footer-bottom span{display:block;margin-top:7px}
+ .footer-grid{grid-template-columns:1fr 1fr;gap:30px 22px}.footer-brand{grid-column:1/-1}.footer-brand .brand-logo{width:82px;height:82px}.footer-bottom{display:block}.footer-bottom span{display:block;margin-top:7px}
  .modal{grid-template-columns:1fr;max-height:92vh}.modal-img{min-height:300px}.modal-copy{padding:25px}.modal-copy h2{font-size:31px}.modal-wrap{padding:10px}
  .cookie{left:10px;bottom:10px;width:calc(100vw - 20px)}
 }
@@ -280,7 +280,7 @@ footer{border-top:1px solid var(--line);padding:60px 0 28px;background:#050505}.
 }
 
 </style>
-</head>
+<style id="footer-layout-fix">footer .footer-grid > div:not(.footer-brand){min-width:0}footer .footer-grid > div:not(.footer-brand) a{display:block!important;width:max-content;max-width:100%;white-space:normal}footer .footer-grid > div:not(.footer-brand) h4{margin-bottom:16px}footer .footer-brand p{max-width:320px}@media(max-width:650px){footer .footer-grid > div:not(.footer-brand) a{width:auto}}</style></head>
 <body>
 <div class="spooky-atmosphere" aria-hidden="true">
   <span class="bat"></span><span class="bat"></span><span class="bat"></span><span class="bat"></span>
