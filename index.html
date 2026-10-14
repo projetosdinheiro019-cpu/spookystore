@@ -163,6 +163,17 @@ footer{border-top:1px solid var(--line);padding:60px 0 28px;background:#050505}.
 .coupon{display:flex;gap:7px;margin:10px 0}.coupon input{flex:1;height:40px;background:#111;border:1px solid var(--line);border-radius:10px;color:white;padding:0 10px;outline:none}.coupon button{height:40px;border:1px solid var(--line);background:#171717;color:white;border-radius:10px;padding:0 12px;font-size:11px}
 .modal-wrap{position:fixed;inset:0;z-index:350;display:none;align-items:center;justify-content:center;padding:18px}.modal-wrap.open{display:flex}.modal{width:min(900px,100%);max-height:90vh;overflow:auto;background:#0d0d0d;border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);display:grid;grid-template-columns:1fr 1fr;animation:modal .3s var(--ease)}@keyframes modal{from{opacity:0;transform:translateY(15px) scale(.98)}to{opacity:1;transform:none}}
 .modal-img{min-height:510px;background-size:cover;background-position:center}.modal-copy{padding:38px;display:flex;flex-direction:column;justify-content:center}.modal-copy h2{font-family:Georgia,serif;font-size:40px;font-weight:500;line-height:1;margin:10px 0}.modal-copy p{color:#888;font-size:13px;line-height:1.7}.modal-price{font-size:26px;font-weight:900;margin:12px 0}.modal-select{height:45px;background:#111;color:white;border:1px solid var(--line);border-radius:10px;padding:0 12px;margin:8px 0}
+.product-modal-close{position:absolute;z-index:2;right:14px;top:14px;width:38px;height:38px;border-radius:50%;border:1px solid #393939;background:rgba(10,10,10,.88);color:#fff;font-size:25px;cursor:pointer;display:grid;place-items:center}
+.modal{position:relative}
+.product-detail-list{display:grid;gap:8px;margin:4px 0 8px;color:#bdb7b0;font-size:12px;line-height:1.55}
+.product-detail-list div{display:flex;gap:8px;align-items:flex-start}
+.product-detail-list strong{color:#f0e9e2;min-width:86px;font-weight:650}
+.modal-option-label{font-size:11px;color:#aaa;margin-top:10px}
+.modal-delivery-note{font-size:10px;color:#858078;line-height:1.5;margin:7px 0 14px}
+.product{cursor:pointer}
+.product .add,.product .wish,.product .quick{cursor:pointer}
+@media(max-width:520px){.modal-copy{padding:18px}.product-detail-list{font-size:11px}.product-detail-list strong{min-width:76px}}
+
 .toast{position:fixed;z-index:500;left:50%;bottom:24px;transform:translate(-50%,20px);opacity:0;background:#151515;border:1px solid rgba(255,106,0,.35);border-radius:12px;padding:12px 17px;box-shadow:var(--shadow);font-size:12px;pointer-events:none;transition:.3s}.toast.show{opacity:1;transform:translate(-50%,0)}
 .cookie{position:fixed;z-index:250;left:20px;bottom:20px;width:min(390px,calc(100vw - 40px));background:#111;border:1px solid var(--line);border-radius:17px;padding:17px;box-shadow:var(--shadow);display:none}.cookie.show{display:block}.cookie p{font-size:11px;color:#888;line-height:1.6;margin:0 0 12px}.cookie-actions{display:flex;gap:7px}.cookie-actions button{flex:1;height:37px;border-radius:9px;border:1px solid var(--line);background:#171717;color:white;font-size:11px}.cookie-actions .accept{background:var(--orange);color:#111;border-color:var(--orange)}
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s,transform .7s}.reveal.show{opacity:1;transform:none}
@@ -370,6 +381,10 @@ button,input,select,textarea{font:inherit;max-width:100%}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
+
+/* Rodapé responsivo e janelas de políticas funcionais */
+.site-footer{border-top:1px solid var(--line);padding:54px 0 24px;background:#0b0b0b}.footer-grid{display:grid;grid-template-columns:minmax(220px,1.5fr) repeat(3,minmax(0,1fr));gap:clamp(20px,3.5vw,48px);align-items:start}.footer-brand-link{display:inline-flex}.footer-brand p{color:#89837d;max-width:330px;font-size:13px;line-height:1.75;margin:12px 0 0}.footer-column{display:flex;flex-direction:column;align-items:flex-start;gap:12px;min-width:0}.footer-column h4{font-size:12px;text-transform:uppercase;letter-spacing:.13em;color:#e7dfd7;margin:5px 0 8px}.footer-column a{display:inline-block;color:#c8c1ba;font-size:13px;line-height:1.55;overflow-wrap:anywhere;transition:color .2s ease}.footer-column a:hover,.footer-column a:focus-visible{color:var(--orange2)}.footer-bottom{border-top:1px solid var(--line);margin-top:38px;padding-top:18px;color:#777;font-size:10px;display:flex;justify-content:space-between;gap:16px;line-height:1.7}.footer-policy-overlay[hidden]{display:none!important}.footer-policy-overlay{position:fixed;inset:0;z-index:20000;display:grid;place-items:center;padding:18px}.footer-policy-scrim{position:absolute;inset:0;width:100%;height:100%;border:0;background:rgba(0,0,0,.82);backdrop-filter:blur(7px)}.footer-policy-dialog{position:relative;z-index:1;width:min(580px,100%);max-height:min(82dvh,760px);overflow:auto;background:#111;border:1px solid rgba(255,255,255,.13);border-radius:20px;padding:clamp(22px,5vw,34px);box-shadow:0 25px 100px #000}.footer-policy-dialog h2{font-family:Georgia,serif;font-size:clamp(25px,5vw,34px);margin:10px 38px 18px 0}.footer-policy-dialog h3{font-size:15px;margin:20px 0 6px;color:#f3e7db}.footer-policy-dialog p{font-size:13px;line-height:1.8;color:#c4bdb6}.footer-policy-dialog a{color:var(--orange2);text-decoration:underline}.footer-policy-x{position:absolute;top:12px;right:13px;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:#1b1b1b;color:#fff;font-size:25px}@media(max-width:800px){.footer-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 22px}.footer-brand{grid-column:1/-1}.footer-brand .brand-logo{width:165px;height:62px}.footer-bottom{display:block}.footer-bottom span{display:block;margin-top:7px}}@media(max-width:420px){.site-footer{padding:36px 0 20px}.footer-grid{gap:25px 14px}.footer-column{gap:11px}.footer-column h4{font-size:11px}.footer-column a{font-size:12px}.footer-brand p{font-size:12px}.footer-policy-dialog{border-radius:16px}}
+
 </style>
 </head>
 <body>
@@ -485,15 +500,16 @@ button,input,select,textarea{font:inherit;max-width:100%}
 </section>
 </main>
 
-<footer>
+<footer class="site-footer">
 <div class="container footer-grid">
-  <div class="footer-brand"><div class="brand"><img class="brand-logo" src="assets/spooky-logo.png" alt="Spooky Store"></div><p>Seu Halloween começa aqui. Uma experiência de compra criada para quem quer sair do comum.</p></div>
-  <div><h4>Loja</h4><a href="#colecao">Produtos</a><a href="#categorias">Categorias</a><a href="#pedidos">Meus pedidos</a><a href="#colecao" onclick="setFilter('fantasia')">Fantasias</a><a href="#colecao" onclick="setFilter('decoracao')">Decoração</a><a href="#colecao" onclick="setFilter('sfx')">Maquiagem SFX</a></div>
-  <div><h4>Ajuda</h4><a href="#faq">Perguntas frequentes</a><a href="#">Política de troca</a><a href="#">Privacidade</a><a href="#">Termos</a></div>
-  <div><h4>Contato</h4><a href="mailto:contato@spookystore.com.br">contato@spookystore.com.br</a><a href="#">Instagram</a><a href="#">WhatsApp</a></div>
+  <div class="footer-brand"><a class="brand footer-brand-link" href="#inicio" aria-label="Voltar ao início"><img class="brand-logo" src="assets/spooky-logo.png" alt="Spooky Store"></a><p>Seu Halloween começa aqui. Uma experiência de compra criada para quem quer sair do comum.</p></div>
+  <div class="footer-column"><h4>Loja</h4><a href="#colecao" data-footer-scroll="colecao">Produtos</a><a href="#categorias" data-footer-scroll="categorias">Categorias</a><a href="#pedidos" data-footer-scroll="pedidos">Meus pedidos</a><a href="#colecao" data-footer-filter="fantasia">Fantasias</a><a href="#colecao" data-footer-filter="decoracao">Decoração</a><a href="#colecao" data-footer-filter="sfx">Maquiagem SFX</a></div>
+  <div class="footer-column"><h4>Ajuda</h4><a href="#faq" data-footer-scroll="faq">Perguntas frequentes</a><a href="#politica-troca" data-footer-policy="trocas">Política de troca</a><a href="#privacidade" data-footer-policy="privacidade">Privacidade</a><a href="#termos" data-footer-policy="termos">Termos</a></div>
+  <div class="footer-column"><h4>Contato</h4><a href="mailto:contato@spookystore.com.br">contato@spookystore.com.br</a><a href="https://www.instagram.com/spookystore.br/" target="_blank" rel="noopener noreferrer">Instagram @spookystore.br ↗</a></div>
 </div>
-<div class="container footer-bottom"><span>© 2026 Spooky Store. Todos os direitos reservados.</span><span>Halloween • Fantasias • Decoração • Acessórios • Maquiagem SFX</span></div>
+<div class="container footer-bottom"><span>© <span id="footerYear">2026</span> Spooky Store. Todos os direitos reservados.</span><span>Halloween • Fantasias • Decoração • Acessórios • Maquiagem SFX</span></div>
 </footer>
+<div class="footer-policy-overlay" id="footerPolicyOverlay" hidden><button class="footer-policy-scrim" type="button" data-footer-policy-close aria-label="Fechar janela"></button><section class="footer-policy-dialog" role="dialog" aria-modal="true" aria-labelledby="footerPolicyTitle"><button class="footer-policy-x" type="button" data-footer-policy-close aria-label="Fechar">×</button><div class="eyebrow">SPOOKY STORE • CENTRAL DE AJUDA</div><h2 id="footerPolicyTitle">Central de ajuda</h2><div id="footerPolicyBody"></div></section></div>
 
 <!-- CART -->
 <div class="drawer-backdrop" id="cartBackdrop" onclick="if(event.target===this)closeCart()">
@@ -517,15 +533,19 @@ button,input,select,textarea{font:inherit;max-width:100%}
 <!-- QUICK VIEW -->
 <div class="modal-backdrop" id="modalBackdrop" onclick="if(event.target===this)closeModal()"></div>
 <div class="modal-wrap" id="modalWrap">
-<div class="modal">
-  <div class="modal-img" id="modalImg"></div>
+<div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalName">
+  <button class="product-modal-close" type="button" onclick="closeModal()" aria-label="Fechar detalhes do produto">×</button>
+  <div class="modal-img" id="modalImg" role="img" aria-label="Imagem do produto"></div>
   <div class="modal-copy">
     <div class="eyebrow" id="modalTag">SPOOKY STORE</div>
     <h2 id="modalName"></h2>
     <div class="stars">★★★★★ <span class="reviews">(curadoria Spooky)</span></div>
     <p id="modalDesc"></p>
+    <div class="product-detail-list" id="modalDetails"></div>
     <div class="modal-price" id="modalPrice"></div>
-    <select class="modal-select"><option>Tamanho / opção</option><option>Único</option><option>P</option><option>M</option><option>G</option><option>GG</option></select>
+    <label class="modal-option-label" for="modalOption">Opção do produto</label>
+    <select class="modal-select" id="modalOption"><option value="Único">Tamanho único / padrão</option><option value="P">P</option><option value="M">M</option><option value="G">G</option><option value="GG">GG</option></select>
+    <div class="modal-delivery-note">Compra segura · Confira prazo e frete no checkout.</div>
     <button class="btn primary" id="modalAdd">Adicionar ao carrinho</button>
   </div>
 </div>
@@ -609,7 +629,7 @@ function filtered(){
 function render(){
  const arr=filtered();document.getElementById('countText').textContent=`${arr.length} produtos`;
  document.getElementById('grid').innerHTML=arr.length?arr.map((p,i)=>`
- <article class="product reveal show" style="transition-delay:${Math.min(i*20,160)}ms">
+ <article class="product reveal show" role="button" tabindex="0" aria-label="Ver detalhes de ${p.name}" onclick="if(!event.target.closest('button'))quick(${p.id})" onkeydown="if((event.key==='Enter'||event.key===' ')&&!event.target.closest('button')){event.preventDefault();quick(${p.id})}" style="transition-delay:${Math.min(i*20,160)}ms">
   <div class="product-image" style="background-image:url('${p.img}')">
    <span class="product-tag">${p.badge}</span>
    <button class="wish ${wishlist.includes(p.id)?'active':''}" aria-label="Favoritar" onclick="toggleWish(${p.id})">${wishlist.includes(p.id)?'♥':'♡'}</button>
@@ -630,7 +650,7 @@ function showWishlist(){
  if(!wishlist.length){toast('Você ainda não tem favoritos');return}
  active='todos';document.getElementById('search').value='';
  document.getElementById('grid').innerHTML=products.filter(p=>wishlist.includes(p.id)).map(p=>`
- <article class="product"><div class="product-image" style="background-image:url('${p.img}')"><span class="product-tag">Favorito</span><button class="wish active" onclick="toggleWish(${p.id})">♥</button><button class="quick" onclick="quick(${p.id})">↗</button></div><div class="product-info"><div class="stars">★★★★★ <span class="reviews">(${p.reviews})</span></div><div class="product-name">${p.name}</div><div class="price-row"><span class="price">${brl(p.price)}</span><span class="old">${brl(p.old)}</span></div><button class="add" onclick="add(${p.id})">Adicionar ao carrinho</button></div></article>`).join('');
+ <article class="product" role="button" tabindex="0" aria-label="Ver detalhes de ${p.name}" onclick="if(!event.target.closest('button'))quick(${p.id})" onkeydown="if((event.key==='Enter'||event.key===' ')&&!event.target.closest('button')){event.preventDefault();quick(${p.id})}"><div class="product-image" style="background-image:url('${p.img}')"><span class="product-tag">Favorito</span><button class="wish active" onclick="toggleWish(${p.id})">♥</button><button class="quick" onclick="quick(${p.id})">↗</button></div><div class="product-info"><div class="stars">★★★★★ <span class="reviews">(${p.reviews})</span></div><div class="product-name">${p.name}</div><div class="price-row"><span class="price">${brl(p.price)}</span><span class="old">${brl(p.old)}</span></div><button class="add" onclick="add(${p.id})">Adicionar ao carrinho</button></div></article>`).join('');
  document.getElementById('countText').textContent=`${wishlist.length} favoritos`;
  document.getElementById('colecao').scrollIntoView({behavior:'smooth'});
 }
@@ -678,11 +698,18 @@ function calcShipping(){
 }
 function quick(id){
  const p=products.find(x=>x.id===id);if(!p)return;
+ const categoryLabels={fantasia:'Fantasia',decoracao:'Decoração',acessorio:'Acessório',mascara:'Máscara',sfx:'Maquiagem SFX'};
+ const category=categoryLabels[p.category]||p.category||'Halloween';
  document.getElementById('modalImg').style.backgroundImage=`url('${p.img}')`;
- document.getElementById('modalTag').textContent=p.badge;
+ document.getElementById('modalImg').setAttribute('aria-label',`Imagem de ${p.name}`);
+ document.getElementById('modalTag').textContent=p.badge||category;
  document.getElementById('modalName').textContent=p.name;
  document.getElementById('modalPrice').innerHTML=`${brl(p.price)} <span class="old">${brl(p.old)}</span>`;
- document.getElementById('modalDesc').textContent='Uma escolha da curadoria Spooky Store para completar seu Halloween. Confira as opções disponíveis e adicione ao carrinho.';
+ document.getElementById('modalDesc').textContent=`${p.name}: uma opção da categoria ${category} selecionada para completar sua produção de Halloween. Confira as informações e escolha a opção disponível antes de adicionar ao carrinho.`;
+ document.getElementById('modalDetails').innerHTML=`<div><strong>Categoria</strong><span>${category}</span></div><div><strong>Disponibilidade</strong><span>Consulte no checkout antes de concluir a compra.</span></div><div><strong>Entrega</strong><span>Frete e prazo estimado são apresentados no checkout.</span></div><div><strong>Pagamento</strong><span>Consulte as opções disponíveis no checkout.</span></div>`;
+ const option=document.getElementById('modalOption');
+ const isClothing=String(p.category||'').toLowerCase()==='fantasia';
+ option.innerHTML=isClothing?'<option value="Único">Tamanho único / padrão</option><option value="P">P</option><option value="M">M</option><option value="G">G</option><option value="GG">GG</option>':'<option value="Único">Tamanho único / padrão</option>';
  document.getElementById('modalAdd').onclick=()=>{add(id);closeModal()};
  document.getElementById('modalBackdrop').classList.add('open');document.getElementById('modalWrap').classList.add('open');document.body.classList.add('lock');
 }
@@ -1025,5 +1052,8 @@ updateBadges();render();updateCart();renderOrders();
     <div id="paymentError" class="payment-error" hidden></div>
   </section>
 </div>
+<script>
+(()=>{const y=document.getElementById('footerYear');if(y)y.textContent=new Date().getFullYear();const ov=document.getElementById('footerPolicyOverlay'),title=document.getElementById('footerPolicyTitle'),body=document.getElementById('footerPolicyBody'),mail='<a href="mailto:contato@spookystore.com.br">contato@spookystore.com.br</a>';const pages={trocas:{title:'Política de troca e devolução',html:`<p>Queremos que sua experiência com a Spooky Store seja clara do começo ao fim.</p><h3>Como solicitar ajuda</h3><p>Informe o número do pedido, o e-mail usado na compra e explique o motivo do contato. Fale conosco por ${mail}.</p><h3>Prazos e direitos</h3><p>As solicitações são avaliadas conforme as condições do pedido e a legislação brasileira de defesa do consumidor. Os direitos legais aplicáveis às compras online continuam válidos.</p><p>Antes da publicação, a loja deve definir seus procedimentos, custos de envio e prazos de análise.</p>`},privacidade:{title:'Política de privacidade',html:`<p>Os dados pessoais devem ser usados apenas para finalidades legítimas relacionadas ao atendimento, processamento de pedidos, pagamentos e prevenção a fraudes, observando a LGPD.</p><h3>Dados e finalidade</h3><p>Os dados informados no checkout podem ser usados para identificar a compra, entregar o pedido, confirmar pagamentos e prestar suporte. Chaves secretas nunca devem ser expostas no navegador.</p><h3>Solicitações</h3><p>Para dúvidas sobre dados pessoais, escreva para ${mail}. A política definitiva deve informar operadores envolvidos e prazos de retenção.</p>`},termos:{title:'Termos de uso e compra',html:`<p>Confira descrição, preço, prazo e custo de entrega antes de confirmar a compra.</p><h3>Pedidos e pagamentos</h3><p>Um pedido depende da confirmação do pagamento e da disponibilidade dos itens. A confirmação deve ser verificada no sistema de pagamentos, não apenas no navegador.</p><h3>Atendimento</h3><p>As condições finais de venda, entrega e cancelamento devem ser apresentadas antes da compra e respeitar os direitos do consumidor. Suporte: ${mail}.</p>`}};function open(k){const x=pages[k];if(!x)return;title.textContent=x.title;body.innerHTML=x.html;ov.hidden=false;document.body.classList.add('lock');ov.querySelector('.footer-policy-x').focus()}function close(){ov.hidden=true;document.body.classList.remove('lock')}document.querySelectorAll('[data-footer-policy]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();open(a.dataset.footerPolicy)}));ov.querySelectorAll('[data-footer-policy-close]').forEach(b=>b.addEventListener('click',close));document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!ov.hidden)close()});document.querySelectorAll('[data-footer-scroll]').forEach(a=>a.addEventListener('click',e=>{const ids={colecao:['colecao','produtos','products'],categorias:['categorias','categories'],pedidos:['pedidos','meus-pedidos','orders'],faq:['faq']};const t=(ids[a.dataset.footerScroll]||[]).map(id=>document.getElementById(id)).find(Boolean);if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}}));document.querySelectorAll('[data-footer-filter]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const t=document.getElementById('colecao')||document.getElementById('products');if(t)t.scrollIntoView({behavior:'smooth',block:'start'});if(typeof window.setFilter==='function')window.setFilter(a.dataset.footerFilter);else{const f=document.querySelector('[data-filter="'+a.dataset.footerFilter+'"],[data-category="'+a.dataset.footerFilter+'"]');if(f)f.click()}}))})();
+</script>
 </body>
 </html>
