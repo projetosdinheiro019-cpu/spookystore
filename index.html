@@ -385,6 +385,7 @@ button,input,select,textarea{font:inherit;max-width:100%}
 /* Rodapé responsivo e janelas de políticas funcionais */
 .site-footer{border-top:1px solid var(--line);padding:54px 0 24px;background:#0b0b0b}.footer-grid{display:grid;grid-template-columns:minmax(220px,1.5fr) repeat(3,minmax(0,1fr));gap:clamp(20px,3.5vw,48px);align-items:start}.footer-brand-link{display:inline-flex}.footer-brand p{color:#89837d;max-width:330px;font-size:13px;line-height:1.75;margin:12px 0 0}.footer-column{display:flex;flex-direction:column;align-items:flex-start;gap:12px;min-width:0}.footer-column h4{font-size:12px;text-transform:uppercase;letter-spacing:.13em;color:#e7dfd7;margin:5px 0 8px}.footer-column a{display:inline-block;color:#c8c1ba;font-size:13px;line-height:1.55;overflow-wrap:anywhere;transition:color .2s ease}.footer-column a:hover,.footer-column a:focus-visible{color:var(--orange2)}.footer-bottom{border-top:1px solid var(--line);margin-top:38px;padding-top:18px;color:#777;font-size:10px;display:flex;justify-content:space-between;gap:16px;line-height:1.7}.footer-policy-overlay[hidden]{display:none!important}.footer-policy-overlay{position:fixed;inset:0;z-index:20000;display:grid;place-items:center;padding:18px}.footer-policy-scrim{position:absolute;inset:0;width:100%;height:100%;border:0;background:rgba(0,0,0,.82);backdrop-filter:blur(7px)}.footer-policy-dialog{position:relative;z-index:1;width:min(580px,100%);max-height:min(82dvh,760px);overflow:auto;background:#111;border:1px solid rgba(255,255,255,.13);border-radius:20px;padding:clamp(22px,5vw,34px);box-shadow:0 25px 100px #000}.footer-policy-dialog h2{font-family:Georgia,serif;font-size:clamp(25px,5vw,34px);margin:10px 38px 18px 0}.footer-policy-dialog h3{font-size:15px;margin:20px 0 6px;color:#f3e7db}.footer-policy-dialog p{font-size:13px;line-height:1.8;color:#c4bdb6}.footer-policy-dialog a{color:var(--orange2);text-decoration:underline}.footer-policy-x{position:absolute;top:12px;right:13px;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:#1b1b1b;color:#fff;font-size:25px}@media(max-width:800px){.footer-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 22px}.footer-brand{grid-column:1/-1}.footer-brand .brand-logo{width:165px;height:62px}.footer-bottom{display:block}.footer-bottom span{display:block;margin-top:7px}}@media(max-width:420px){.site-footer{padding:36px 0 20px}.footer-grid{gap:25px 14px}.footer-column{gap:11px}.footer-column h4{font-size:11px}.footer-column a{font-size:12px}.footer-brand p{font-size:12px}.footer-policy-dialog{border-radius:16px}}
 
+.modal-option-help{margin:7px 0 0;color:#999;font-size:12px;line-height:1.5}.cart-option{margin-top:4px;color:#999;font-size:11px;line-height:1.4}
 </style>
 </head>
 <body>
@@ -543,8 +544,8 @@ button,input,select,textarea{font:inherit;max-width:100%}
     <p id="modalDesc"></p>
     <div class="product-detail-list" id="modalDetails"></div>
     <div class="modal-price" id="modalPrice"></div>
-    <label class="modal-option-label" for="modalOption">Opção do produto</label>
-    <select class="modal-select" id="modalOption"><option value="Único">Tamanho único / padrão</option><option value="P">P</option><option value="M">M</option><option value="G">G</option><option value="GG">GG</option></select>
+    <label class="modal-option-label" id="modalOptionLabel" for="modalOption">Escolha sua opção</label>
+    <select class="modal-select" id="modalOption"><option value="">Selecione uma opção</option></select><p class="modal-option-help" id="modalOptionHelp">As opções variam conforme o produto.</p>
     <div class="modal-delivery-note">Compra segura · Confira prazo e frete no checkout.</div>
     <button class="btn primary" id="modalAdd">Adicionar ao carrinho</button>
   </div>
@@ -670,7 +671,7 @@ function updateCart(){
  if(!cart.length){list.innerHTML='<div class="empty" style="padding:45px 10px">Seu carrinho está vazio.<br>Comece a escolher seus favoritos.</div>';shipping=0}
  else{
   const map={};cart.forEach(id=>map[id]=(map[id]||0)+1);
-  list.innerHTML=Object.entries(map).map(([id,qty])=>{const p=products.find(x=>x.id==id);return `<div class="cart-row"><div class="cart-thumb" style="background-image:url('${p.img}')"></div><div><div class="cart-name">${p.name}</div><div class="cart-price">${brl(p.price)}</div><div class="qty"><button onclick="removeOne(${p.id})">−</button><span>${qty}</span><button onclick="add(${p.id})">+</button></div></div><button class="cart-remove" onclick="removeAll(${p.id})">remover</button></div>`}).join('');
+  list.innerHTML=Object.entries(map).map(([id,qty])=>{const p=products.find(x=>x.id==id);return `<div class="cart-row"><div class="cart-thumb" style="background-image:url('${p.img}')"></div><div><div class="cart-name">${p.name}</div><div class="cart-price">${brl(p.price)}</div><div class="cart-option">Opção: ${(()=>{try{return localStorage.getItem('spooky_last_option_'+p.id)||'Conforme descrição'}catch(e){return 'Conforme descrição'}})()}</div><div class="qty"><button onclick="removeOne(${p.id})">−</button><span>${qty}</span><button onclick="add(${p.id})">+</button></div></div><button class="cart-remove" onclick="removeAll(${p.id})">remover</button></div>`}).join('');
  }
  const sub=cart.reduce((s,id)=>s+products.find(p=>p.id===id).price,0);
  const disc=coupon?sub*.1:0;
@@ -699,18 +700,54 @@ function calcShipping(){
 function quick(id){
  const p=products.find(x=>x.id===id);if(!p)return;
  const categoryLabels={fantasia:'Fantasia',decoracao:'Decoração',acessorio:'Acessório',mascara:'Máscara',sfx:'Maquiagem SFX'};
- const category=categoryLabels[p.category]||p.category||'Halloween';
+ const cat=String(p.cat||p.category||'').toLowerCase();
+ const category=categoryLabels[cat]||'Halloween';
  document.getElementById('modalImg').style.backgroundImage=`url('${p.img}')`;
  document.getElementById('modalImg').setAttribute('aria-label',`Imagem de ${p.name}`);
  document.getElementById('modalTag').textContent=p.badge||category;
  document.getElementById('modalName').textContent=p.name;
  document.getElementById('modalPrice').innerHTML=`${brl(p.price)} <span class="old">${brl(p.old)}</span>`;
- document.getElementById('modalDesc').textContent=`${p.name}: uma opção da categoria ${category} selecionada para completar sua produção de Halloween. Confira as informações e escolha a opção disponível antes de adicionar ao carrinho.`;
- document.getElementById('modalDetails').innerHTML=`<div><strong>Categoria</strong><span>${category}</span></div><div><strong>Disponibilidade</strong><span>Consulte no checkout antes de concluir a compra.</span></div><div><strong>Entrega</strong><span>Frete e prazo estimado são apresentados no checkout.</span></div><div><strong>Pagamento</strong><span>Consulte as opções disponíveis no checkout.</span></div>`;
+ const name=p.name.toLowerCase();
+ let label='Apresentação do produto', help='Confira a opção correspondente ao produto selecionado.', opts=[];
+ if(cat==='fantasia'){
+   label='Tamanho da fantasia'; help='Escolha o tamanho desejado. Confirme a disponibilidade antes da compra.';
+   opts=[['P','P'],['M','M'],['G','G'],['GG','GG']];
+ } else if(cat==='mascara') {
+   label='Modelo / ajuste da máscara'; help='Selecione o ajuste desejado, conforme disponibilidade.';
+   opts=[['adulto','Adulto'],['infantil','Infantil']];
+ } else if(cat==='acessorio') {
+   if(name.includes('luva')) {label='Tamanho das luvas';help='Escolha o tamanho desejado.';opts=[['P','P'],['M','M'],['G','G']];}
+   else if(name.includes('anel')) {label='Tamanho do anel';help='Escolha o tamanho; confirme a medida disponível.';opts=[['pequeno','Pequeno'],['medio','Médio'],['grande','Grande'],['ajustavel','Ajustável']];}
+   else if(name.includes('capa')) {label='Tamanho da capa';help='Escolha o tamanho desejado.';opts=[['unico','Único'],['adulto','Adulto'],['infantil','Infantil']];}
+   else if(name.includes('chapeu')) {label='Tamanho do chapéu';help='Escolha o ajuste desejado.';opts=[['adulto','Adulto'],['infantil','Infantil'],['ajustavel','Ajustável']];}
+   else if(name.includes('colar')) {label='Acabamento';help='Selecione o acabamento desejado.';opts=[['preto','Preto'],['prateado','Prateado']];}
+   else if(name.includes('tiara')) {label='Modelo da tiara';help='Escolha a opção desejada.';opts=[['classica','Clássica'],['com detalhes','Com detalhes']];}
+   else {label='Modelo do acessório';help='Selecione a opção desejada conforme disponibilidade.';opts=[['padrao','Modelo padrão']];}
+ } else if(cat==='decoracao') {
+   label='Quantidade / apresentação'; help='Selecione a apresentação que deseja comprar.';
+   if(name.includes('kit')||name.includes('luzes')) opts=[['kit','Kit conforme descrição'],['unidade','1 unidade']];
+   else opts=[['unidade','1 unidade'],['kit','Kit decoração']];
+ } else if(cat==='sfx') {
+   label='Apresentação de maquiagem SFX'; help='Produto de caracterização; confira os componentes descritos na embalagem.';
+   if(name.includes('20ml')) opts=[['20ml','Frasco de 20 ml']];
+   else if(name.includes('60g')) opts=[['60g','Embalagem de 60 g']];
+   else if(name.includes('4 peças')) opts=[['4pecas','Kit com 4 peças']];
+   else if(name.includes('completo')||name.includes('profissional')) opts=[['kit-completo','Kit completo conforme descrição']];
+   else if(name.includes('prótese')) opts=[['unidade','Prótese conforme imagem e descrição']];
+   else if(name.includes('kit')) opts=[['kit','Kit conforme descrição']];
+   else opts=[['unidade','1 unidade']];
+ } else { opts=[['padrao','Conforme imagem e descrição']]; }
  const option=document.getElementById('modalOption');
- const isClothing=String(p.category||'').toLowerCase()==='fantasia';
- option.innerHTML=isClothing?'<option value="Único">Tamanho único / padrão</option><option value="P">P</option><option value="M">M</option><option value="G">G</option><option value="GG">GG</option>':'<option value="Único">Tamanho único / padrão</option>';
- document.getElementById('modalAdd').onclick=()=>{add(id);closeModal()};
+ document.getElementById('modalOptionLabel').textContent=label;
+ document.getElementById('modalOptionHelp').textContent=help;
+ option.innerHTML=opts.map(([v,t])=>`<option value="${v}">${t}</option>`).join('');
+ const detailOption=opts.map(x=>x[1]).join(' / ');
+ document.getElementById('modalDesc').textContent=`${p.name}. Categoria: ${category}. ${help}`;
+ document.getElementById('modalDetails').innerHTML=`<div><strong>Categoria</strong><span>${category}</span></div><div><strong>Opção</strong><span>${detailOption}</span></div><div><strong>Entrega</strong><span>Frete e prazo apresentados no checkout.</span></div><div><strong>Pagamento</strong><span>Consulte as opções disponíveis no checkout.</span></div>`;
+ document.getElementById('modalAdd').onclick=()=>{
+   try { localStorage.setItem('spooky_last_option_'+id, option.options[option.selectedIndex]?.text || 'Conforme descrição'); } catch(e) {}
+   add(id); closeModal();
+ };
  document.getElementById('modalBackdrop').classList.add('open');document.getElementById('modalWrap').classList.add('open');document.body.classList.add('lock');
 }
 function closeModal(){document.getElementById('modalBackdrop').classList.remove('open');document.getElementById('modalWrap').classList.remove('open');document.body.classList.remove('lock')}
